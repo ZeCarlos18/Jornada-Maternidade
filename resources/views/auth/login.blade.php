@@ -13,17 +13,18 @@
             <img src="{{ asset('img/JM.png') }}" alt="Logo Jornada Maternidade" class="logo-img">
         </div>
 
-        <h2 class="login-title">Login</h2>
-
         <form action="{{ route('login') }}" method="POST">
             @csrf
+            <h2>Login</h2>
             <div class="input-group">
-                <i class="fas fa-user input-icon"></i>
-                <input type="email" name="email" placeholder="E-MAIL" class="input-field" required>
+                <i class="fas fa-envelope input-icon"></i>
+                <label for="email" class="input-label">E-mail</label>
+                <input type="email" name="email" class="input-field" required>
             </div>
             <div class="input-group">
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" name="password" placeholder="SENHA" class="input-field" required>
+                <label for="password" class="input-label">Senha</label>
+                <input type="password" name="password" class="input-field" required>
             </div>
             <button type="submit" class="submit-btn">Entrar</button>
         </form>
