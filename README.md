@@ -1,11 +1,8 @@
-Criar o .env <br>
-Exemplo - Nome da pasta - pweb <br>
-git clone <url> <br>
+git clone (url) <br>
 cd nome_pasta <br>
 copy .env.example .env <br>
 composer install <br>
 php artisan key:generate <br>
-.env configurar o banco <br>
 php artisan migrate <br>
 php artisan serve <br>
 <br>

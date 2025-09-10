@@ -12,22 +12,18 @@ body {
     text-align: center;
 }
 
-/* ...existing code... */
-
 .logo-container {
-    margin-bottom: 1rem; /* Reduzido de 2rem para 1rem */
+    margin-bottom: 1rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .logo-img {
-    height: 10rem;        /* Opcional: diminui a imagem */
+    height: 10rem;        
     width: 10rem;
     margin-bottom: 0.5rem;
 }
-
-/* ...existing code... */
 
 .input-group {
     display: flex;
