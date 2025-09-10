@@ -1,11 +1,11 @@
-<?php
+<?php 
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->name('login'); // Adicionando o nome 'login' a esta rota
 
 Route::get('/dashboard', function () {
     return view('dashboard');
