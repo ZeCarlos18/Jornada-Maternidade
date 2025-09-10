@@ -5,7 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('login'); // Adicionando o nome 'login' a esta rota
+})->name('login'); 
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register'); 
 
 Route::get('/dashboard', function () {
     return view('dashboard');

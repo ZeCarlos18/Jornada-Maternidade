@@ -10,8 +10,7 @@
 <body>
     <div class="container">
         <div class="logo-container">
-             <img src="https://i.imgur.com/RdeS13y.png" alt="Logo Jornada Maternidade" class="logo-img">
-            <h1 class="logo-text">Jornada Maternidade</h1>
+            <img src="{{ asset('img/JM.png') }}" alt="Logo Jornada Maternidade" class="logo-img">
         </div>
 
         <h2 class="login-title">Login</h2>
@@ -33,9 +32,6 @@
             <p>Ou acesse com</p>
             <div class="social-icons">
                 <a href="#" class="social-icon-link">
-                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
-                </a>
-                <a href="#" class="social-icon-link">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
                 </a>
                 <a href="#" class="social-icon-link">
@@ -46,7 +42,7 @@
 
         <div class="signup-link">
             <p>Não tem uma conta?</p>
-            <a href="{{ route('register') }}" class="register-btn">Cadastrar-se</a>
+            <a href="/register">Cadastrar-se</a>
         </div>
     </div>
 </body>
