@@ -1,22 +1,24 @@
 <?php
 
-use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommunityController;
 
-Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route('dashboard');
-    }
+Route::get('/login', function () {
     return view('auth.login');
-})->name('home');
+})->name('login'); 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register'); 
+
 
 Route::get('/community', [CommunityController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('community');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,3 +27,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
