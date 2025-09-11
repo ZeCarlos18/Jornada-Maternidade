@@ -8,22 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Post;    
 
-class ProfileController extends Controller
+class CommunityController extends Controller
 {
-    public function index() {
-        $user = Auth::user();
-        $registrosCount = 10;
-        $postsCount = 3;
-        $conexoesCount = 7;
-
-        return view('dashboard', [
-            'user' => $user,
-            'registrosCount' => $registrosCount,
-            'postsCount' => $postsCount,
-            'conexoesCount' => $conexoesCount,
+        public function index(): View
+    {
+        $posts = Post::all();
+        return view('community.index', 
+    [
+            'posts' => $posts,
         ]);
     }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -31,9 +28,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -46,10 +40,7 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-
-    /**
-     * Delete the user's account.
-     */
+    
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
