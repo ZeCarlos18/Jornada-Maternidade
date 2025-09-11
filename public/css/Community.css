@@ -64,6 +64,8 @@ body {
     background-color: transparent;
     color: white;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .category-btn.active {
@@ -142,3 +144,4 @@ body {
     color: #555;
     font-size: 1.2rem;
 }
+

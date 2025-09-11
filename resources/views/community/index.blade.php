@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comunidade - Jornada Maternidade</title>
-    <link rel="stylesheet" href="{{ asset('css/community.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Community.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -17,9 +17,14 @@
     </header>
 
     <nav class="category-nav">
-        <button class="category-btn active">Dúvidas</button>
-        <button class="category-btn">Saúde</button>
-        <button class="category-btn">Dicas</button>
+        <a href="{{ route('community', ['category' => 'Dúvidas']) }}"
+            class = "category-btn {{ $activeCategory == 'Dúvidas' ? 'active' : '' }}">Dúvidas</a>
+
+        <a href="{{ route('community', ['category' => 'Saúde']) }}"
+            class="category-btn {{ $activeCategory == 'Saúde' ? 'active' : '' }}">Saúde</a>
+
+        <a href="{{ route('community', ['category' => 'Dicas']) }}"
+            class="category-btn {{ $activeCategory == 'Dicas' ? 'active' : '' }}">Dicas</a>
     </nav>
 
     <main class="community-grid">
