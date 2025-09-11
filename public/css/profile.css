@@ -1,0 +1,144 @@
+body {
+    background-color: #f0f2f5; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 2rem 1rem;
+    color: #1c1e21;
+}
+
+.profile-container {
+    max-width: 680px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.profile-header {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.profile-picture-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1rem;
+    cursor: pointer;
+}
+
+#profilePic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; 
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #4B0082; 
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 2px solid white;
+    transition: transform 0.2s ease-in-out;
+}
+
+.profile-picture-container:hover .edit-icon {
+    transform: scale(1.1);
+}
+
+#profilePicInput {
+    display: none;
+}
+
+.user-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.user-handle {
+    font-size: 1rem;
+    color: #65676b;
+    margin: 0;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-count {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #65676b;
+    text-transform: uppercase;
+}
+
+.profile-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: #1c1e21;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.menu-item:last-child a {
+    border-bottom: none;
+}
+
+.menu-item a:hover {
+    background-color: #f0f2f5;
+}
+
+.menu-item .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e4e6eb;
+    border-radius: 50%;
+    color: #4B0082; /* Roxo */
+}
+
+.menu-item .arrow-icon {
+    margin-left: auto;
+    color: #65676b;
+}
+

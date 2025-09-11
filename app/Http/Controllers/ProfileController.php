@@ -11,9 +11,19 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    public function index() {
+        $user = Auth::user();
+        $registrosCount = 10;
+        $postsCount = 3;
+        $conexoesCount = 7;
+
+        return view('dashboard', [
+            'user' => $user,
+            'registrosCount' => $registrosCount,
+            'postsCount' => $postsCount,
+            'conexoesCount' => $conexoesCount,
+        ]);
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [

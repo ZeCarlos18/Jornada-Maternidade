@@ -25,6 +25,12 @@ body {
     box-sizing: border-box;
 }
 
+.logo-container {
+    height: 10rem;        
+    width: 10rem;
+    margin-bottom: 0.5rem;
+}
+
 .header-icon {
     color: #4B0082;
     font-size: 1.8rem;
