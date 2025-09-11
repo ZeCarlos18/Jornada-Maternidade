@@ -134,4 +134,4 @@
             }
         }
     </script>
-</x-app
+</x-app-layout>
