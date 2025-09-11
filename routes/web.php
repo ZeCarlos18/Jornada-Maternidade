@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DiaryController;
 
 
 Route::get('/', function () {
@@ -23,6 +24,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/community', [CommunityController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('community');
+
+Route::get('/diary', [DiaryController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('diary');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
