@@ -18,7 +18,6 @@
         <div class="header-right">
             <a href="{{ route('profile.edit') }}" class="header-icon"><i class="fas fa-user"></i></a>
             <a href="#" class="header-icon"><i class="fas fa-book-open"></i></a>
-            <a href="#" class="header-icon"><i class="fas fa-users"></i></a>
             <a href="{{ route('community') }}" class="header-icon"><i class="fas fa-users"></i></a>
         </div>
     </header>
