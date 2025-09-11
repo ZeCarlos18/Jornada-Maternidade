@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Diário - Jornada Maternidade</title>
     
-    {{-- Garante que ele use o CSS exclusivo do diário --}}
     <link rel="stylesheet" href="{{ asset('css/diary.css') }}">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    {{-- O CABEÇALHO FOI CORRIGIDO COM A ORDEM CERTA DOS ÍCONES --}}
     <header class="main-header">
         <div class="header-left">
             <a href="{{ route('dashboard') }}" class="header-icon"><i class="fas fa-home"></i></a>
@@ -50,8 +48,8 @@
         @endforelse
     </main>
 
-    <button class="add-post-btn">
+    <a href="{{ route('posts.create') }}" class="add-post-btn">
         <i class="fas fa-plus"></i>
-    </button>
+    </a>
 </body>
 </html>

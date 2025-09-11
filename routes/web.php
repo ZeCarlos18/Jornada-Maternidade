@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiaryController;
+use App\Http\Controllers\PostController;
+
 
 
 Route::get('/', function () {
@@ -22,11 +24,15 @@ Route::get('/register', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/community', [CommunityController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('community');
-
 Route::get('/diary', [DiaryController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('diary');
+
+Route::get('/posts/create/{category?}', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
+
+Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('posts.store');
+
+Route::get('/community/{category?}', [CommunityController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('community');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
