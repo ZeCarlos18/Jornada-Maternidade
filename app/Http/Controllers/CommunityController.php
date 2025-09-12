@@ -12,20 +12,17 @@ use App\Models\Post;
 
 class CommunityController extends Controller
 {
-        public function index(Request $request): View
+        public function index($category = 'duvidas'): View
     {
-            {
-        $category = $request->query('category', 'Dúvidas');
-
-        $posts = Post::with('user')
-                     ->where('category', $category)
-                     ->latest() 
-                     ->get();
+        $allowedCategories = ['duvidas', 'saude', 'dicas'];
+        if (!in_array($category, $allowedCategories)) {
+            $category = 'duvidas'; 
+        }
+        $posts = Post::with('user')->where('category', $category)->latest()->get();
         return view('community.index', [
             'posts' => $posts,
-            'activeCategory' => $category
+            'currentCategory' => $category
         ]);
-    }
     }
 
     public function edit(Request $request): View

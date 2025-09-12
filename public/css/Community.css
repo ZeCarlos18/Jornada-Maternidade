@@ -137,9 +137,13 @@ body {
     background-color: #4B0082;
     color: white;
     border: none;
-    font-size: 1.8rem;
+    font-size: 1.8rem; 
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; 
 }
 
 .no-posts {

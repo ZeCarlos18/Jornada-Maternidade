@@ -18,17 +18,19 @@
         <div class="header-right">
             <a href="{{ route('profile.edit') }}" class="header-icon profile-icon"><i class="fas fa-user"></i></a>
             <a href="{{ route('diary') }}" class="header-icon"><i class="fas fa-book-open"></i></a>
-        </div></header>
-<nav class="category-nav">
-    <a href="{{ route('community', 'duvidas') }}"
-       class="category-btn {{ $currentCategory == 'duvidas' ? 'active' : '' }}">Dúvidas</a>
+        </div>
+    </header>
+    
+    <nav class="category-nav">
+       <a href="{{ route('community', 'duvidas') }}"
+           class="category-btn {{ $currentCategory == 'duvidas' ? 'active' : '' }}">Dúvidas</a>
 
-    <a href="{{ route('community', 'saude') }}"
-       class="category-btn {{ $currentCategory == 'saude' ? 'active' : '' }}">Saúde</a>
+        <a href="{{ route('community', 'saude') }}"
+           class="category-btn {{ $currentCategory == 'saude' ? 'active' : '' }}">Saúde</a>
 
-    <a href="{{ route('community', 'dicas') }}"
-       class="category-btn {{ $currentCategory == 'dicas' ? 'active' : '' }}">Dicas</a>
-</nav>
+        <a href="{{ route('community', 'dicas') }}"
+           class="category-btn {{ $currentCategory == 'dicas' ? 'active' : '' }}">Dicas</a>
+    </nav>
 
     <main class="community-grid">
         @forelse ($posts as $post)
@@ -47,11 +49,11 @@
                 </div>
             </div>
         @empty
-            <p class="no-posts">Ainda não há publicações na comunidade.</p>
+            <p class="no-posts">Ainda não há publicações nesta categoria.</p>
         @endforelse
     </main>
 
-    <a href="{{ route('posts.create', $currentCategory) }}" class="add-post-btn">
+   <a href="{{ route('posts.create', $currentCategory) }}" class="add-post-btn">
         <i class="fas fa-plus"></i>
     </a>
 </body>
