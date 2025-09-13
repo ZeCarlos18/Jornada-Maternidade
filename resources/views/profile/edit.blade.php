@@ -83,9 +83,14 @@
                             </div>
                         </li>
                         <li class="menu-item">
-                            <a href="#" style="color: #d93025;">
-                                <span class="icon" style="color: #d93025;"><i class="fas fa-sign-out-alt"></i></span>Sair<i class="fas fa-chevron-right arrow-icon"></i>
-                            </a>
+                           <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" style="background:none;border:none;color:#d93025;display:flex;align-items:center;gap:8px;">
+                                    <span class="icon" style="color: #d93025;"><i class="fas fa-sign-out-alt"></i></span>
+                                     Sair
+                                    <i class="fas fa-chevron-right arrow-icon"></i>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
