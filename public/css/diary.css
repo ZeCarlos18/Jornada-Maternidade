@@ -1,14 +1,10 @@
-/* =================================================================
-   ARQUIVO CSS CORRETO E FINAL para /public/css/diary.css
-   ================================================================= */
 body {
     background-color: #D1D1D1;
     font-family: sans-serif;
     margin: 0;
-    padding-top: 60px; /* Espaço para o cabeçalho fixo */
+    padding-top: 60px; 
 }
 
-/* --- CABEÇALHO --- */
 .main-header {
     background-color: #4B0082;
     color: white;
@@ -20,28 +16,27 @@ body {
     box-sizing: border-box;
     z-index: 10;
     
-    /* A MÁGICA ESTÁ AQUI: Layout em Grid de 3 colunas */
     display: grid;
-    grid-template-columns: 1fr auto 1fr; /* Esquerda | Centro (auto-ajustável) | Direita */
+    grid-template-columns: 1fr auto 1fr; 
     align-items: center;
     padding: 0 20px;
 }
 
 .header-left {
-    justify-self: start; /* Alinha o conteúdo desta div à esquerda */
+    justify-self: start; 
 }
 
 .header-title {
-    justify-self: center; /* Alinha o conteúdo desta div ao centro */
+    justify-self: center;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
 .header-right {
-    justify-self: end; /* Alinha o conteúdo desta div à direita */
-    display: flex; /* Para alinhar os ícones dentro dela */
+    justify-self: end; 
+    display: flex; 
     align-items: center;
-    gap: 20px; /* Espaçamento entre os ícones da direita */
+    gap: 20px; 
 }
 
 .header-icon {
@@ -49,16 +44,14 @@ body {
     font-size: 1.5rem;
     text-decoration: none;
 }
-/* --- FIM DO CABEÇALHO --- */
 
 
-/* --- CONTEÚDO DO DIÁRIO (Posts) --- */
 .diary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     padding: 1rem;
-    padding-top: 20px; /* Espaço entre o cabeçalho e os posts */
+    padding-top: 20px; 
 }
 
 .post-card {

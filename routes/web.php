@@ -7,8 +7,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\PostController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Auth\SocialAuthController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
+Route::get('/auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('facebook.login');
+Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
 
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();

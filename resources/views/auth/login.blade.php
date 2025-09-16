@@ -39,7 +39,7 @@
         <div class="social-login">
             <p>Ou acesse com</p>
             <div class="social-icons">
-                <a href="#" class="social-icon-link">
+                <a href="{{ route('facebook.login') }}" class="social-icon-link">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
                 </a>
                 <a href="{{ url('/auth/google') }}" class="btn btn-primary">
