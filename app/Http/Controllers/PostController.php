@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Post; // <-- ADICIONE ISSO
+use Illuminate\Support\Facades\Auth; // <-- ADICIONE ISSO
 
 class PostController extends Controller
 {
-        public function create($category = null){
-        $allowedCategories = ['duvidas', 'saude', 'dicas'];
+    // ... outros métodos que você possa ter ...
+
+    public function create($category = null)
+    {
+        $allowedCategories = ['duvidas', 'saude', 'dicas', 'diary'];
         $currentCategory = in_array($category, $allowedCategories) ? $category : null;
 
         return view('posts.create', [
             'currentCategory' => $currentCategory,
-            'allowedCategories' => $allowedCategories
+            'allowedCategories' => $allowedCategories, 
         ]);
     }
 
@@ -22,7 +25,7 @@ class PostController extends Controller
     {
         $request->validate([
             'content' => 'required|string|max:2000',
-            'category' => 'required|in:duvidas,saude,dicas',
+            'category' => 'required|in:duvidas,saude,dicas,diary',
         ]);
 
         Post::create([
@@ -30,6 +33,11 @@ class PostController extends Controller
             'content' => $request->input('content'),
             'category' => $request->input('category'),
         ]);
+
+        if ($request->category === 'diary') {
+            return redirect()->route('diary')->with('success', 'Entrada do diário criada com sucesso!');
+        }
+
         return redirect()->route('community', ['category' => $request->category])
                          ->with('success', 'Publicação criada com sucesso!');
     }

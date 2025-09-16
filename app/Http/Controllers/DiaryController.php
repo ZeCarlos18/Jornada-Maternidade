@@ -11,6 +11,7 @@ class DiaryController extends Controller
     public function index()
     {
         $posts = Post::where('user_id', Auth::id())
+                     ->where('category', 'diary')
                      ->latest()
                      ->get();
         return view('diary.index', [

@@ -1,102 +1,77 @@
 body {
-    background-color: #f0f2f5; 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #d1d1d1;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    padding: 2rem 1rem;
-    color: #1c1e21;
-}
-
-.profile-container {
-    max-width: 680px;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.profile-header {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    border-bottom: 1px solid #dddfe2;
+    padding: 0;
 }
 
 .profile-picture-container {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto 1rem;
-    cursor: pointer;
 }
 
 #profilePic {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    object-fit: cover; 
+    background: #fff;
     border: 4px solid #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
 }
 
 .edit-icon {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: #4B0082; 
-    color: white;
-    width: 36px;
-    height: 36px;
+    background: #fff;
+    color: #673ab7;
     border-radius: 50%;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    border: 2px solid white;
-    transition: transform 0.2s ease-in-out;
-}
-
-.profile-picture-container:hover .edit-icon {
-    transform: scale(1.1);
-}
-
-#profilePicInput {
-    display: none;
+    border: 2px solid #673ab7;
+    cursor: pointer;
 }
 
 .user-name {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin: 0.5rem 0 0.25rem;
-}
-
-.user-handle {
-    font-size: 1rem;
-    color: #65676b;
-    margin: 0;
+    margin: 0.5rem 0 0;
 }
 
 .profile-stats {
     display: flex;
     justify-content: space-around;
     text-align: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid #dddfe2;
+    padding: 1.5rem 0;
+    background: #e0e0e0;
 }
 
 .stat-item {
-    display: flex;
-    flex-direction: column;
+    flex: 1;
+    border-right: 1px solid #bdbdbd;
 }
 
-.stat-count {
-    font-size: 1.25rem;
-    font-weight: 600;
+.stat-item:last-child {
+    border-right: none;
 }
 
 .stat-label {
-    font-size: 0.875rem;
-    color: #65676b;
-    text-transform: uppercase;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.stat-count {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0.3rem;
 }
 
 .profile-menu {
@@ -105,76 +80,165 @@ body {
     margin: 0;
 }
 
-.menu-item a {
+.menu-item {
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.menu-item:first-child {
+    border-top: 1px solid #bdbdbd;
+}
+
+.menu-item a, .menu-item button {
     display: flex;
     align-items: center;
-    padding: 1.25rem 1.5rem;
-    text-decoration: none;
-    color: #1c1e21;
+    padding: 1.2rem 2rem;
+    background: none;
+    border: none;
+    width: 100%;
+    color: #333;
     font-size: 1.1rem;
     font-weight: 500;
-    transition: background-color 0.2s ease;
-    border-bottom: 1px solid #dddfe2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.menu-item:last-child a {
-    border-bottom: none;
-}
-
-.menu-item a:hover {
-    background-color: #f0f2f5;
+.menu-item a:hover, .menu-item button:hover {
+    background: #d1c4e9;
 }
 
 .menu-item .icon {
-    width: 40px;
-    height: 40px;
     margin-right: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e4e6eb;
-    border-radius: 50%;
-    color: #4B0082; /* Roxo */
+    font-size: 1.3rem;
+    width: 25px;
+    text-align: center;
 }
 
 .menu-item .arrow-icon {
     margin-left: auto;
-    color: #65676b;
+    color: #673ab7;
 }
 
-.menu-item form button {
-    display: flex;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-    text-decoration: none;
-    color: #1c1e21;
-    font-size: 1.1rem;
-    font-weight: 500;
-    background: none;
-    border: none;
+.menu-item button.logout {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.menu-item .icon.logout {
+    color: #d32f2f;
+}
+
+.account-section {
+    padding: 2rem;
+    background: #e0e0e0;
+}
+
+.account-section h2 {
+    font-size: 1.3rem;
+    color: #673ab7;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.account-section p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.account-section hr {
+    border: 0;
+    border-top: 1px solid #bdbdbd;
+    margin: 2rem 0;
+}
+
+.account-info {
+    margin-bottom: 1rem;
+}
+
+.account-info label {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.account-info input {
     width: 100%;
+    padding: 0.7rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    font-size: 1rem;
+}
+
+.account-section .btn-save {
+    background: #673ab7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
-    border-bottom: 1px solid #dddfe2;
-    transition: background-color 0.2s ease;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+    font-weight: bold;
 }
 
-.menu-item form button:hover {
-    background-color: #f0f2f5;
+.account-section .btn-save:hover {
+    background: #512da8;
 }
 
-.menu-item form .icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 1rem;
+.delete-account {
+    background: #d32f2f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: inline-block;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.delete-account:hover {
+    background: #b71c1c;
+}
+
+.profile-header {
+    background: #673ab7;
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    position: relative;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.profile-nav-left, .profile-nav-right {
+    position: absolute;
+    top: 1.5rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e4e6eb;
-    border-radius: 50%;
-    color: #4B0082;
+    gap: 1.5rem;
 }
 
-.menu-item form .arrow-icon {
-    margin-left: auto;
-    color: #65676b;
+.profile-nav-left {
+    left: 1.5rem;
+}
+
+.profile-nav-right {
+    right: 1.5rem;
+}
+
+.profile-nav-left a, .profile-nav-right a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.profile-nav-left a:hover, .profile-nav-right a:hover {
+    transform: scale(1.1);
 }

@@ -1,135 +1,118 @@
-<x-app-layout>
-    <x-slot name="header">
-        <header class="main-header">
-            <div class="header-left">
-                <a href="{{ route('dashboard') }}" class="header-icon"><i class="fas fa-home"></i></a>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Jornada Maternidade</title>
+    
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="profile-header">
+            <div class="profile-nav-left">
+                <a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a>
             </div>
-            <div class="logo-container">
-                <img src="{{ asset('img/JM.png') }}" alt="Logo" style="height: 50px;">
+            <div class="profile-nav-right">
+                <a href="{{ route('diary') }}"><i class="fas fa-book-open"></i></a>
+                <a href="{{ route('community') }}"><i class="fas fa-users"></i></a>
             </div>
-            <div class="header-right">
-                <a href="{{ route('profile.edit') }}" class="header-icon"><i class="fas fa-user"></i></a>
-                <a href="#" class="header-icon"><i class="fas fa-book-open"></i></a>
-                <a href="{{ route('community') }}" class="header-icon"><i class="fas fa-users"></i></a>
-            </div>
-        </header>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <main>
-                <div class="profile-container">
-                    <div class="profile-header">
-                        <label for="profilePicInput" class="profile-picture-container">
-                            <img id="profilePic" src="{{ Auth::user()->profile_photo_url ?? 'https://placehold.co/140x140/EFEFEF/AAAAAA&text=Foto' }}" alt="Foto de Perfil">
-                            <div class="edit-icon">
-                                <i class="fas fa-camera"></i>
-                            </div>
-                        </label>
-                        <input type="file" id="profilePicInput" accept="image/*">
-
-                        <h1 class="user-name">{{ Auth::user()->name ?? 'Nome do Usuário' }}</h1>
-                        <p class="user-handle">{{ '@' . (Auth::user()->username ?? 'nomedeusuario') }}</p>
-                    </div>
-
-                    <div class="profile-stats">
-                        <div class="stat-item">
-                            <span class="stat-count">128</span>
-                            <span class="stat-label">Registros</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-count">54</span>
-                            <span class="stat-label">Posts</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-count">231</span>
-                            <span class="stat-label">Conexões</span>
-                        </div>
-                    </div>
-
-                    <ul class="profile-menu">
-                        <li class="menu-item">
-                            <a href="#" onclick="toggleSection('notificacoes'); return false;">
-                                <span class="icon"><i class="fas fa-bell"></i></span>Notificações<i class="fas fa-chevron-right arrow-icon"></i>
-                            </a>
-                            <div id="notificacoes" class="hidden-section" style="display:none; margin-left:32px;">
-                                <p>Você tem 3 novas notificações.</p>
-                                <ul>
-                                    <li>Nova mensagem de Maria.</li>
-                                    <li>Seu post foi curtido por João.</li>
-                                    <li>Atualização disponível no app.</li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" onclick="toggleSection('privacidade'); return false;">
-                                <span class="icon"><i class="fas fa-shield-alt"></i></span>Privacidade<i class="fas fa-chevron-right arrow-icon"></i>
-                            </a>
-                            <div id="privacidade" class="hidden-section" style="display:none; margin-left:32px;">
-                                <p>Suas configurações de privacidade estão ativadas.</p>
-                                <ul>
-                                    <li>Perfil público: Não</li>
-                                    <li>Receber notificações: Sim</li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" onclick="toggleSection('sobreapp'); return false;">
-                                <span class="icon"><i class="fas fa-info-circle"></i></span>Sobre o App<i class="fas fa-chevron-right arrow-icon"></i>
-                            </a>
-                            <div id="sobreapp" class="hidden-section" style="display:none; margin-left:32px;">
-                                <p>Jornada Maternidade v1.0</p>
-                                <p>Aplicativo para acompanhamento da maternidade.</p>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                           <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" style="background:none;border:none;color:#d93025;display:flex;align-items:center;gap:8px;">
-                                    <span class="icon" style="color: #d93025;"><i class="fas fa-sign-out-alt"></i></span>
-                                     Sair
-                                    <i class="fas fa-chevron-right arrow-icon"></i>
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
+            <form id="profilePicForm" action="{{ route('profile.update.photo') }}" method="POST" enctype="multipart/form-data" style="text-align: center;">
+                @csrf
+                <div class="profile-picture-container">
+                    <img id="profilePic" src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : 'https://via.placeholder.com/110' }}" alt="Foto de Perfil">
+                    <label for="profilePicInput" class="edit-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </label>
+                    <input type="file" id="profilePicInput" name="profile_photo" style="display: none;" accept="image/*">
                 </div>
-            </main>
+            </form>
+            <h2 class="user-name">{{ $user->name }}</h2>
+    </header>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+    <section class="profile-stats">
+        <div class="stat-item">
+            <span class="stat-label">Registros</span>
+            <span class="stat-count">{{ $user->diary_count ?? 0 }}</span>
         </div>
+        <div class="stat-item">
+            <span class="stat-label">Posts</span>
+            <span class="stat-count">{{ $user->posts_count ?? 0 }}</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Conexões</span>
+            <span class="stat-count">{{ $user->connections_count ?? 0 }}</span>
+        </div>
+    </section>
+
+        <ul class="profile-menu">
+            <li class="menu-item"><a href="#"><i class="fas fa-bell icon"></i> Notificações <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <li class="menu-item"><a href="#"><i class="fas fa-shield-alt icon"></i> Privacidade <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <li class="menu-item"><a href="#"><i class="fas fa-info-circle icon"></i> Sobre o App <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <li class="menu-item"><a href="#" onclick="toggleSection('account-section'); return false;"><i class="fas fa-user-cog icon"></i> Conta <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <li class="menu-item">
+                <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
+                    @csrf
+                    <button type="submit" class="logout">
+                        <i class="fas fa-sign-out-alt icon logout"></i> Sair
+                    </button>
+                </form>
+            </li>
+        </ul>
+
+        {{-- INÍCIO DA SEÇÃO QUE DEVE SER OCULTA --}}
+        <section id="account-section" class="account-section" style="display:none;">
+            
+            {{-- ATUALIZAR INFORMAÇÕES DO PERFIL --}}
+            <div class="update-profile-information">
+                <h2>Informações do Perfil</h2>
+                <p>Altere seu nome de usuário e o seu e-mail.</p>
+                <form method="post" action="{{ route('profile.update') }}">
+                    @csrf
+                    @method('patch')
+                    <div class="account-info">
+                        <label for="name">Nome de Usuário</label>
+                        <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus>
+                    </div>
+                    <div class="account-info">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" required>
+                    </div>
+                    <button type="submit" class="btn-save">Salvar</button>
+                </form>
+            </div>
+
+            <hr>
+
+            {{-- ATUALIZAR SENHA --}}
+            <div class="update-password">
+                <h2>Alterar Senha</h2>
+                <p>Certifique-se que a sua conta está usando uma senha segura.</p>
+                <form method="post" action="{{ route('password.update') }}">
+                    @csrf
+                    @method('put')
+                    <div class="account-info">
+                        <label for="current_password">Senha Atual</label>
+                        <input id="current_password" name="current_password" type="password" autocomplete="current-password">
+                    </div>
+                    <div class="account-info">
+                        <label for="password">Nova Senha</label>
+                        <input id="password" name="password" type="password" autocomplete="new-password">
+                    </div>
+                    <div class="account-info">
+                        <label for="password_confirmation">Confirmar Senha</label>
+                        <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password">
+                    </div>
+                    <button type="submit" class="btn-save">Salvar</button>
+                </form>
+            </div>
+    </div>
+        </section>
     </div>
 
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script>
-        const profilePicInput = document.getElementById('profilePicInput');
-        const profilePic = document.getElementById('profilePic');
-
-        profilePicInput && (profilePicInput.onchange = evt => {
-            const [file] = profilePicInput.files;
-            if (file) {
-                profilePic.src = URL.createObjectURL(file);
-            }
-        });
-
         function toggleSection(id) {
             const el = document.getElementById(id);
             if (el.style.display === "none" || el.style.display === "") {
@@ -138,5 +121,19 @@
                 el.style.display = "none";
             }
         }
+
+        document.getElementById('profilePicInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePic').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+                
+                document.getElementById('profilePicForm').submit();
+            }
+        });
     </script>
-</x-app-layout>
+</body>
+</html>

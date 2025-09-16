@@ -7,27 +7,26 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function index() {
-        $user = Auth::user();
-        $registrosCount = 10;
-        $postsCount = 3;
-        $conexoesCount = 7;
-
-        return view('dashboard', [
-            'user' => $user,
-            'registrosCount' => $registrosCount,
-            'postsCount' => $postsCount,
-            'conexoesCount' => $conexoesCount,
-        ]);
-    }
+    /**
+     * Display the user's profile form.
+     */
     public function edit(Request $request): View
     {
+        $user = Auth::user();
+
+        $user->diary_count = $user->posts()->where('category', 'diary')->count();
+
+        $user->posts_count = $user->posts()->where('category', '!=', 'diary')->count();
+        
+        $user->connections_count = 0;
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
 
@@ -45,6 +44,30 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    /**
+     * Update the user's profile photo.
+     */
+    public function updatePhoto(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'profile_photo' => ['required', 'image', 'max:1024'],
+        ]);
+
+        $user = $request->user();
+
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+        }
+
+        $path = $request->file('profile_photo')->store('profile-photos', 'public');
+
+        $user->forceFill([
+            'profile_photo_path' => $path,
+        ])->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-photo-updated');
     }
 
     /**

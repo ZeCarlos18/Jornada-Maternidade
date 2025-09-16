@@ -48,7 +48,7 @@
         @endforelse
     </main>
 
-    <a href="{{ route('posts.create') }}" class="add-post-btn">
+    <a href="{{ route('posts.create', 'diary') }}" class="add-post-btn">
         <i class="fas fa-plus"></i>
     </a>
 </body>
