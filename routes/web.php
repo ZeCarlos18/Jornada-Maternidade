@@ -6,7 +6,30 @@ use App\Http\Controllers\CommunityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\PostController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+
+    $user = User::firstOrCreate(
+        ['email' => $googleUser->getEmail()],
+        [
+            'name' => $googleUser->getName(),
+            'email' => $googleUser->getEmail(),
+            'password' => \Illuminate\Support\Facades\Hash::make(\Str::random(16)),
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect('/');
+});
 
 
 Route::get('/', function () {

@@ -42,7 +42,7 @@
                 <a href="#" class="social-icon-link">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
                 </a>
-                <a href="#" class="social-icon-link">
+                <a href="{{ url('/auth/google') }}" class="btn btn-primary">
                     <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png" alt="Gmail">
                 </a>
             </div>
