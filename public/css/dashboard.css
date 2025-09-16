@@ -58,7 +58,6 @@ body {
     align-items: center;
     min-height: calc(100vh - 70px);
     text-align: center;
-    padding: 2rem;
 }
 
 .summary-card {

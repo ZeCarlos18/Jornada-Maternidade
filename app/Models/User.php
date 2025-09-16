@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'menstruation_day',
+        'profile_photo_path',
     ];
 
     /**

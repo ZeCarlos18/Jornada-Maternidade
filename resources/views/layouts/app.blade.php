@@ -18,8 +18,6 @@
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/profile.js') }}"></script>
 
-        <!-- Scripts -->
-        <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

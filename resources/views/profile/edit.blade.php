@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - Jornada Maternidade</title>
-    
+    <link rel="icon" href="{{ asset('img/JM.png') }}">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -48,10 +47,65 @@
     </section>
 
         <ul class="profile-menu">
-            <li class="menu-item"><a href="#"><i class="fas fa-bell icon"></i> Notificações <i class="fas fa-chevron-right arrow-icon"></i></a></li>
-            <li class="menu-item"><a href="#"><i class="fas fa-shield-alt icon"></i> Privacidade <i class="fas fa-chevron-right arrow-icon"></i></a></li>
-            <li class="menu-item"><a href="#"><i class="fas fa-info-circle icon"></i> Sobre o App <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <li class="menu-item"><a href="#" onclick="toggleSection('notifica-section'); return false;"><i class="fas fa-bell icon"></i> Notificações <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <section id="notifica-section" class="notifica-section" style="display:none;">
+                <h2>Notificações</h2>
+                <p>Nenhuma Notificação.</p>
+            </section>
+
             <li class="menu-item"><a href="#" onclick="toggleSection('account-section'); return false;"><i class="fas fa-user-cog icon"></i> Conta <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+            <section id="account-section" class="account-section" style="display:none;">
+                <div class="update-profile-information">
+                    <h2>Informações do Perfil</h2>
+                    <p>Altere seu nome de usuário e o seu e-mail.</p>
+                    <form method="post" action="{{ route('profile.update') }}">
+                        @csrf
+                        @method('patch')
+                        <div class="account-info">
+                            <label for="name">Nome de Usuário</label>
+                            <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus>
+                        </div>
+                        <div class="account-info">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" required>
+                        </div>
+                        <button type="submit" class="btn-save">Salvar</button>
+                    </form>
+                </div>
+
+                <div class="update-password">
+                    <h2>Alterar Senha</h2>
+                    <p>Certifique-se que a sua conta está usando uma senha segura.</p>
+                    <form method="post" action="{{ route('password.update') }}">
+                        @csrf
+                        @method('put')
+                        <div class="account-info">
+                            <label for="current_password">Senha Atual</label>
+                            <input id="current_password" name="current_password" type="password" autocomplete="current-password">
+                        </div>
+                        <div class="account-info">
+                            <label for="password">Nova Senha</label>
+                            <input id="password" name="password" type="password" autocomplete="new-password">
+                        </div>
+                        <div class="account-info">
+                            <label for="password_confirmation">Confirmar Senha</label>
+                            <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn-save">Salvar</button>
+                    </form>
+                </div>
+            </section>
+
+            <li class="menu-item"><a href="#" onclick="toggleSection('sobre-section'); return false;"><i class="fas fa-info-circle icon"></i> Sobre <i class="fas fa-chevron-right arrow-icon"></i></a></li>
+                <section id="sobre-section" class="sobre-section" style="display:none;">
+                    <h2>Sobre</h2>
+                    <p><h3>Equipe de Desenvolvedores:</h3></p>
+                    <p>Caique de Souza Oliveira</p>
+                    <p>José Carlos Pinheiro Ramalho</p>
+                    <p>Nicolas Pereira Dias</p>
+                    <p>Teogenes Antônio Cordeiro Bisneto</p>
+                </section>
+
             <li class="menu-item">
                 <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
                     @csrf
@@ -61,57 +115,7 @@
                 </form>
             </li>
         </ul>
-
-        {{-- INÍCIO DA SEÇÃO QUE DEVE SER OCULTA --}}
-        <section id="account-section" class="account-section" style="display:none;">
-            
-            {{-- ATUALIZAR INFORMAÇÕES DO PERFIL --}}
-            <div class="update-profile-information">
-                <h2>Informações do Perfil</h2>
-                <p>Altere seu nome de usuário e o seu e-mail.</p>
-                <form method="post" action="{{ route('profile.update') }}">
-                    @csrf
-                    @method('patch')
-                    <div class="account-info">
-                        <label for="name">Nome de Usuário</label>
-                        <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus>
-                    </div>
-                    <div class="account-info">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" required>
-                    </div>
-                    <button type="submit" class="btn-save">Salvar</button>
-                </form>
-            </div>
-
-            <hr>
-
-            {{-- ATUALIZAR SENHA --}}
-            <div class="update-password">
-                <h2>Alterar Senha</h2>
-                <p>Certifique-se que a sua conta está usando uma senha segura.</p>
-                <form method="post" action="{{ route('password.update') }}">
-                    @csrf
-                    @method('put')
-                    <div class="account-info">
-                        <label for="current_password">Senha Atual</label>
-                        <input id="current_password" name="current_password" type="password" autocomplete="current-password">
-                    </div>
-                    <div class="account-info">
-                        <label for="password">Nova Senha</label>
-                        <input id="password" name="password" type="password" autocomplete="new-password">
-                    </div>
-                    <div class="account-info">
-                        <label for="password_confirmation">Confirmar Senha</label>
-                        <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password">
-                    </div>
-                    <button type="submit" class="btn-save">Salvar</button>
-                </form>
-            </div>
-    </div>
-        </section>
-    </div>
-
+        
     <script>
         function toggleSection(id) {
             const el = document.getElementById(id);
