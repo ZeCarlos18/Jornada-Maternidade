@@ -16,6 +16,12 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <h2>Login</h2>
+
+            @if ($errors->has('email'))
+                <div class="error-message" style="margin-bottom: 10px;">
+                     {{ $errors->first('email') }}
+                </div>
+            @endif
             <div class="input-group">
                 <i class="fas fa-envelope input-icon"></i>
                 <label for="email" class="input-label">E-mail</label>
