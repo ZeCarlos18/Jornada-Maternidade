@@ -152,3 +152,22 @@ body {
     color: #555;
     font-size: 1.2rem;
 }
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #a0aec0; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.delete-btn:hover {
+    color: #e53e3e; 
+}

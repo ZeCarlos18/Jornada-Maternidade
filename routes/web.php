@@ -20,7 +20,6 @@ Route::get('/auth/google', function () {
 
 Route::get('/auth/google/callback', function () {
     $googleUser = Socialite::driver('google')->user();
-
     $user = User::firstOrCreate(
         ['email' => $googleUser->getEmail()],
         [
@@ -29,9 +28,7 @@ Route::get('/auth/google/callback', function () {
             'password' => \Illuminate\Support\Facades\Hash::make(\Str::random(16)),
         ]
     );
-
     Auth::login($user);
-
     return redirect('/');
 });
 
@@ -65,7 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.update.photo'); // Nova rota
+    Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.update.photo'); 
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
 require __DIR__.'/auth.php';

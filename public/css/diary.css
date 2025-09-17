@@ -127,3 +127,22 @@ body {
     margin-top: 50px;
     color: #666;
 }
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #a0aec0; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.delete-btn:hover {
+    color: #e53e3e; 
+}

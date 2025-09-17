@@ -26,17 +26,24 @@
         @forelse ($posts as $post)
             <div class="post-card">
                 <div class="post-header">
-                    <i class="fas fa-user-circle post-avatar"></i>
-                    <span class="post-author">{{ $post->user->name }}</span>
-                    <span class="post-date">{{ $post->created_at->format('d/m/Y') }}</span>
+                    <div class="post-author">
+                        <span>{{ $post->user->name }}</span>
+                    </div>
+                    <div class="post-meta">
+                        <span>{{ $post->created_at->format('d/m/Y') }}</span>
+                        @can('delete', $post)
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este registro?');">
+                            @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        @endcan
+                    </div>
                 </div>
                 <div class="post-content">
                     <p>{{ $post->content }}</p>
-                </div>
-                <div class="post-actions">
-                    <button><i class="far fa-heart"></i></button>
-                    <button><i class="far fa-comment"></i></button>
-                    <button><i class="fas fa-share"></i></button>
                 </div>
             </div>
         @empty

@@ -25,20 +25,31 @@
     <nav class="category-nav">
        <a href="{{ route('community', 'duvidas') }}"
            class="category-btn {{ $currentCategory == 'duvidas' ? 'active' : '' }}">Dúvidas</a>
-
         <a href="{{ route('community', 'saude') }}"
            class="category-btn {{ $currentCategory == 'saude' ? 'active' : '' }}">Saúde</a>
-
         <a href="{{ route('community', 'dicas') }}"
            class="category-btn {{ $currentCategory == 'dicas' ? 'active' : '' }}">Dicas</a>
     </nav>
-
+    
     <main class="community-grid">
         @forelse ($posts as $post)
             <div class="post-card">
                 <div class="post-header">
-                    <i class="fas fa-user-circle post-avatar"></i>
-                    <span class="post-author">{{ $post->user->name }}</span>
+                    <div class="post-author">
+                        <span>{{ $post->user->name }}</span>
+                    </div>
+                    <div class="post-meta">
+                        <span>{{ $post->created_at->format('d/m/Y') }}</span>
+                        @can('delete', $post)
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta publicação?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        @endcan
+                    </div>
                 </div>
                 <div class="post-content">
                     <p>{{ $post->content }}</p>
