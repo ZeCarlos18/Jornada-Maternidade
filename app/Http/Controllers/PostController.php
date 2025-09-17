@@ -17,6 +17,7 @@ class PostController extends Controller
             'allowedCategories' => $allowedCategories, 
         ]);
     }
+
     public function store(Request $request)
     {
         $request->validate([

@@ -1,0 +1,729 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: auth/facebook
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 302
+        content: "<!DOCTYPE html>\r\n<html>\r\n    <head>\r\n        <meta charset=\"UTF-8\" />\r\n        <meta http-equiv=\"refresh\" content=\"0;url='https://www.facebook.com/v23.0/dialog/oauth?scope=email&amp;response_type=code&amp;state=zzz8W0Ivq1VS3nUCmBraD8Evz6kdnXWfy3bSdY7B'\" />\r\n\r\n        <title>Redirecting to https://www.facebook.com/v23.0/dialog/oauth?scope=email&amp;response_type=code&amp;state=zzz8W0Ivq1VS3nUCmBraD8Evz6kdnXWfy3bSdY7B</title>\r\n    </head>\r\n    <body>\r\n        Redirecting to <a href=\"https://www.facebook.com/v23.0/dialog/oauth?scope=email&amp;response_type=code&amp;state=zzz8W0Ivq1VS3nUCmBraD8Evz6kdnXWfy3bSdY7B\">https://www.facebook.com/v23.0/dialog/oauth?scope=email&amp;response_type=code&amp;state=zzz8W0Ivq1VS3nUCmBraD8Evz6kdnXWfy3bSdY7B</a>.\r\n    </body>\r\n</html>"
+        headers:
+          cache-control: 'no-cache, private'
+          location: 'https://www.facebook.com/v23.0/dialog/oauth?scope=email&response_type=code&state=zzz8W0Ivq1VS3nUCmBraD8Evz6kdnXWfy3bSdY7B'
+          content-type: 'text/html; charset=utf-8'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlprZmRSOC9sR1hXbTdZTEE5THZGVGc9PSIsInZhbHVlIjoic1BYaHc0bEc1L0s4TWxUcHlFUWp1Y0ZJVGlRckUyK2Y5M0lhaVp2U3o2bzVCZWpVNzdyMWlCZW9HQ29FaTRoMnR4dnUzZFNkckhXNFY5Z1Y1UGtzd28vbXRRZTdoWGJvZE95emx0N0p4R2dzSWRCSURQYlRCcXFuTVFJbzJQUkgiLCJtYWMiOiJkNmY4MDk4OWE1NDA1ZTkyZjdlNTkyNmYyZDMzYTcxMjJlMjY2YThkYTYyMWY3MjYxOWVlNzY2ZjA2YmZlMjhhIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:10 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6Ilc5VmZJZEUrRjAwUWd2NFVKNWx5SkE9PSIsInZhbHVlIjoiSXZadzY5MzhuWlE5amNVdlJ4QVhPcXRqSzloeEg5WE5KZzJQbmJVVjl0emtKOVZ0bVRUdGdPcFBiNGlVMGM0S1MveXBKaEtXWW1zRnJlSU9aYmpqb1Rna0tmWE5yaGVZcUpTR29jMm9uVEo3RGpQay9uUXkybkh4blY0L0huUVUiLCJtYWMiOiJmZGRkZjE2MmY3MDM1YjBmZmI3M2QwNGIxNGE0M2U5OWNmN2M5ODJlYjk2YzQ2MTFhNGQ4NzUyZGEyM2NkYTBjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:10 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: auth/facebook/callback
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Imo4eGZHMmhDaDVYMTE1QmxXNnFOWHc9PSIsInZhbHVlIjoiSnVoMUw2TkZWellJaXU2NnYzNnpmS3NKYURrOHVERmV2bjlUem11b29raVFLM1lYbmZYWmpwTWFkYUpZdUEyejRPenl0Q1Y0L0tDVTlRL0NENzY4Sk5Zc3B0Q3hSRXlTMElVTEZySGFOdHNtaDM3dTgzK08ydmlzakIvN3E1TzAiLCJtYWMiOiI3NjU5NjZhZTNkY2RkMTkxMDc5OWQyMDgyZjJlYzZiN2U1YjdjNzAwZGE3MDZjMTFiZjRhOWFkMThlNjFiNmFjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6ImRkOHBscW5lNkRaK2haS1pYSWtOQ3c9PSIsInZhbHVlIjoiamR1ajhRQnhtWXU5SFhlbjdVNEdLTnlabk9RdkFFK1NUbm43RG9oc3NMclB1Z3lBNGVubWpmNTJvanViVDdvTjN5OXhxVmE0UkR0c1JubEVTQ3VDZlI2bnRyL1RTOXE4UVI3bHpJMWFaNTRHY1pzTHNJWXZZTkNVSHY0a1BzQm0iLCJtYWMiOiI3M2NlMWExM2Q5MGQzYWQxMjdkZmNhMzQ4OGUzMjJjYTdmODNkNjVjZDA5YTNmNjI4M2ExYWIyNWI2OWIzOTNiIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: auth/google
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 302
+        content: "<!DOCTYPE html>\r\n<html>\r\n    <head>\r\n        <meta charset=\"UTF-8\" />\r\n        <meta http-equiv=\"refresh\" content=\"0;url='https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;response_type=code&amp;state=rSCb64V8RsfMDRIT46KFAmaxnnkaO5uElQRPAwv3'\" />\r\n\r\n        <title>Redirecting to https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;response_type=code&amp;state=rSCb64V8RsfMDRIT46KFAmaxnnkaO5uElQRPAwv3</title>\r\n    </head>\r\n    <body>\r\n        Redirecting to <a href=\"https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;response_type=code&amp;state=rSCb64V8RsfMDRIT46KFAmaxnnkaO5uElQRPAwv3\">https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;response_type=code&amp;state=rSCb64V8RsfMDRIT46KFAmaxnnkaO5uElQRPAwv3</a>.\r\n    </body>\r\n</html>"
+        headers:
+          cache-control: 'no-cache, private'
+          location: 'https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&response_type=code&state=rSCb64V8RsfMDRIT46KFAmaxnnkaO5uElQRPAwv3'
+          content-type: 'text/html; charset=utf-8'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjI3RVpBYmFkRFErQisxTnlrK2tES0E9PSIsInZhbHVlIjoiUmR2WTdDbHIvUis0djRvNHhCeUFna2VkdFo4aytsNlNtNVdYdWNOekdrcER2Q1pVUjdEaTB5MGcyVUZ1Wk5IUm1xQXAzeCtncUhSYUNDQkI1Y214QmUxTlNGWjluWFJwWnIwcERmWjR4elV1ZXhIdmVjbFFDaCtCSlc1WE4vbW8iLCJtYWMiOiIzNWJjYzNlZGIzMTI2Nzg0MmM3Y2NjOWI0OTc2NzBmNTAwOTMxOTllYWM4ODA4ZWYyYTc2ZTBhYTcyZDRlZTVjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IkhhSUZzZlZDNmRoejBFamZLVTRFZHc9PSIsInZhbHVlIjoiRnl1U2toY1dReXdNQmFubmhFRVJnZXhnaUhmbHN6aFMyektleDR4L1U1di9teVh6empmTXZ2TE9TTGM2NlJmcWRNRGVJVEYrMWV6cGo0SEVWbDU3YUcvUldQdFduakpVTXVzRGExU3h1dWFRUmRrT0ROMWNtajZZbzBXcXlvTE0iLCJtYWMiOiIzZGI5NzgyMjBhZWJiODFjMGRjODc4YjcwOGU2NTYyNDIxMzE0ODRmNzg4NDBiYjE1MmM0MjdmZWUyNmM4ODFjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: auth/google/callback
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkRLQ1MwZTlCQ1lRYTBLMzNMZHd1Zmc9PSIsInZhbHVlIjoiMi9IZGRTRTBRRzFid0dZemJUL2JpT0FRanRNQzVUWXYyQlBpK05IU2pOdWRvdTRkMEZuZGhmclFxbkJJeTlWZ0lkcFcrd1doNVFHSW90ZW5NUXFCSjFNL2h4bkVNQkQrbVdVZ0JvZW9LSE1YQUFMSnBxNHZYTHBJd21jcGR2bzEiLCJtYWMiOiI2MjVjNDM0MTU2OWNiY2U5YWIwMDM1NWViMzY3NTM5NDlhZGViZGIzOWQyOWJkMWY0OGNmZGY2ODFiZjc4M2Y1IiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6Inp3V3k4VER2SjNDK1JNOUppSE5ydlE9PSIsInZhbHVlIjoiU05Oa2p2N3UyaFQ3S0VKdTRsVjVySFBuYUppazBjZzJjQitTZVZheWdEUjRMYmZ5QW5ncWNwOUVHd0JWOGg4YWFvYUZnbW9EbC9mSkFxYVBWSnFuai9vZUJCQ21tZnZuUzBpUSs4bzJPdWpZQ1hGZWw5Zi8yZ3l3S1E3V2ZONnQiLCJtYWMiOiJiZDIxYTIwNTBmMDAxOTY5Yjk4MTAyNTFlNjQ5YzY1YzIxMTVhNGNhZjczYTI4OGNiNDEyMTk4NzQ1YzBhYjEwIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: /
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          <!DOCTYPE html>
+          <html lang="pt-BR">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Login - Jornada Maternidade</title>
+              <link rel="icon" href="http://localhost/img/JM.png">
+              <link rel="stylesheet" href="http://localhost/css/login.css">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+          </head>
+          <body>
+              <div class="container">
+                  <div class="logo-container">
+                      <img src="http://localhost/img/JM.png" alt="Logo Jornada Maternidade" class="logo-img">
+                  </div>
+
+                  <form action="http://localhost/login" method="POST">
+                      <input type="hidden" name="_token" value="K83cBRdlP5Bewan4WIwGyLJLXjCbYjKfl5EBsOMr" autocomplete="off">            <h2>Login</h2>
+
+                                  <div class="input-group">
+                          <i class="fas fa-envelope input-icon"></i>
+                          <label for="email" class="input-label">E-mail</label>
+                          <input type="email" name="email" class="input-field" required>
+                      </div>
+                      <div class="input-group">
+                          <i class="fas fa-lock input-icon"></i>
+                          <label for="password" class="input-label">Senha</label>
+                          <input type="password" name="password" class="input-field" required>
+                      </div>
+                      <button type="submit" class="submit-btn">Entrar</button>
+                  </form>
+
+                  <div class="social-login">
+                      <p>Ou acesse com</p>
+                      <div class="social-icons">
+                          <a href="http://localhost/auth/facebook" class="social-icon-link">
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                          </a>
+                          <a href="http://localhost/auth/google" class="btn btn-primary">
+                              <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png" alt="Gmail">
+                          </a>
+                      </div>
+                  </div>
+
+                  <div class="signup-link">
+                      <p>Não tem uma conta?</p>
+                      <a href="/register">Cadastrar-se</a>
+                  </div>
+              </div>
+          </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImRoQ1FDOHUvbGVjMjViVEgxMGRnNnc9PSIsInZhbHVlIjoiVGczTVBsdVNROTFyOWZ6N1UwbWhBNUIrQllyYTNhUUM0cVZnV2JDR3VyVG1ZZ3ZhTWxaS1dRbWZIY0V6ajdNRUszVmNMajdpVmJ2eWFHaVp6SGNha0o3TXBrSXl3SkxxUHh4NlB5TVFXd3dqSmxvMWMwd2w5cXpSQ2ZVODNCTFIiLCJtYWMiOiI0MDZhNjY1MTMxMjI4ZGFjYWM3NTExZTczYzA5YzYyMTQ4Njc0ZGRkMzEzMzQ4NzE5YzY0MDBmNmZkMzBjYzZjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IjVLZlhhdkpwdCt5SUpyR0dzamRQWEE9PSIsInZhbHVlIjoiRC9Dc0FnODZuOTBkVm9xVnRvK3IvSEFaZ3N1RWJaVThRbzVXRC85WmdLbzRCTDROWVo5dnhKRjZYVDJXZlM3ZU5GMFhKQWFRRFlZTjVrVHRTRWFYTFFKcXh3SW04NlZ4cnJWQWJIMGRIbzU2ak4weFB2NVBEMU8ySVBjaklBazAiLCJtYWMiOiIzOTYwOTMzZDU0NmJiNmZkOWU0YjA2ZjI1NGIyNDhjZjZiOWMzZmQwNDlhYTk2Y2M5YjE5NzZhODQ2YzZlNjE0IiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'posts/create/{category?}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category:
+        name: category
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      category: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InFoN2gzK0p0bktLWGRyWUw2MlFqUnc9PSIsInZhbHVlIjoiUzlVY1hMNUtRK1JNdDBEMkdVWTlPby9NbVNEVmZ1SGVab3F1bkJ6MGo0blhqcVJrcmJBWitqYW45WHJxRG14M0tEZDFhTjdCOWQyeE0zdDdiQ1loSld1VzdYb2VhaW1CNzFlbW5mZFNXNW5XSWdJT0lpb3hjbWx1Rm9nMzBUWm8iLCJtYWMiOiJkMWFlMDc2ZTE0YWUxZThjYWQ0NjJhYWQzNmZkZmQwMmY4N2E3NTRkZDM3MDQyZjNhZGRlZDBlYzI1ZmIyOTIwIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IjFUVjRORzVsRncyWXlFOFJyQUgrNWc9PSIsInZhbHVlIjoic01RR0hoT2YwK3lrYnVIYTFoOXR2eThRR3o5aVUxTlFLQ2RLMGFmVnZWY0pTY1JkN3k5eTFaU1l5TnczMURHd3Fpa21TWGRmdVNweUx4dnNHZUNrTHZxcEZQbWNJRVE4RkZCT2s3ckRuWklTSVo1OUlFdjZNdVhoQWVyTnZwcWEiLCJtYWMiOiJkZTQ5NGM4NjliNjgzOGNlMDBlMjAwOTJmNmNkZDg0OTFjNWNjZmU0MmYxNDJjZTU0YTE5YTIyNjRiYTk3YTA2IiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'community/{category?}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category:
+        name: category
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      category: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkFvZXpoSmovVEFqZkxQcldkOGhnMlE9PSIsInZhbHVlIjoidU94NHZtYVNFS1ZVdkFhdys1Z3dmR1NkeXR2bzQrYWhhWlJOVzhCYTVkVXg1aGZmWGNzdWhab0JEZ0xJdzdhVU52RnZmNzAwdW9MZ05IOEMrT0pCYnFYdHJDOWtxKzdmY3AxVitrM1ppbkNJSnE3L1hHZE4yM3F0YnppMmc2TTAiLCJtYWMiOiJlOGM0MjA0ZDEyMTEzMjQ4YzIwNzdjNTYyM2VkODc5MDVmOTZiNzU1Njc5YmQ3NWQyNTk5MTg4YjljZGVlMzk3IiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IjlNUU9NQnVqeE8wSE52UFMvTFMvR2c9PSIsInZhbHVlIjoiU3ZPZU9OeHFBbUI1U3RMSWo4ZUU1Ny8vZ29meWhOZ1c5cERYS2MwSUxkVkZPamFyKzRiRGgxZDF2S1ZKVGRlcERJRGRPK0xFZVNJMzRYVjJOb05Md2UxNzM2OEk1ZnQ2V1RrNXRRd0t0K1JESjZ3TW15VkMxaDI2aENXOE5wZzciLCJtYWMiOiJhMDQ4OTE2OTA0YTkyNjM5MjNlZDgzYWM1ZDg1ZDk3YmM4MzIzZGQ0YzM5YmQ4ZDBlMTNmZWM4Mzc1ZjZhMjdlIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'posts/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Excluir um post.'
+      description: 'Exclui um post específico. O usuário só pode excluir seus próprios posts.'
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the post.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      post:
+        name: post
+        description: 'O ID do post a ser excluído.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+      post: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'reset-password/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the password reset view.'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      token: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+              <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="csrf-token" content="K83cBRdlP5Bewan4WIwGyLJLXjCbYjKfl5EBsOMr">
+
+                  <title>Laravel</title>
+
+                  <!-- Fonts -->
+                  <link rel="preconnect" href="https://fonts.bunny.net">
+                  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+                  
+              </head>
+              <body class="font-sans text-gray-900 antialiased">
+                  <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                      <div>
+                          <a href="/">
+                              <svg viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 fill-current text-gray-500">
+              <path d="M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"/>
+          </svg>
+                          </a>
+                      </div>
+
+                      <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                          <form method="POST" action="http://localhost/reset-password">
+                  <input type="hidden" name="_token" value="K83cBRdlP5Bewan4WIwGyLJLXjCbYjKfl5EBsOMr" autocomplete="off">
+                  <!-- Password Reset Token -->
+                  <input type="hidden" name="token" value="consequatur">
+
+                  <!-- Email Address -->
+                  <div>
+                      <label class="block font-medium text-sm text-gray-700" for="email">
+              Email
+          </label>
+                      <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required="required" autofocus="autofocus" autocomplete="username">
+                              </div>
+
+                  <!-- Password -->
+                  <div class="mt-4">
+                      <label class="block font-medium text-sm text-gray-700" for="password">
+              Password
+          </label>
+                      <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password" type="password" name="password" required="required" autocomplete="new-password">
+                              </div>
+
+                  <!-- Confirm Password -->
+                  <div class="mt-4">
+                      <label class="block font-medium text-sm text-gray-700" for="password_confirmation">
+              Confirm Password
+          </label>
+
+                      <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" required="required" autocomplete="new-password">
+
+                              </div>
+
+                  <div class="flex items-center justify-end mt-4">
+                      <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Reset Password
+          </button>
+                  </div>
+              </form>
+                      </div>
+                  </div>
+              </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Imk0YWNiRTYxSXpxeFVtYnBQNWtKWEE9PSIsInZhbHVlIjoieFoyZnB2K2pVWWthb3NFV1lOR3NrL1k4RUMxM2x6L0podmJJQzFwUXMzdW9VVnpsVEd0WUY0b244Ry9Kd3kzb0Z1aWlNOVRaSFVXb0xIRmhOWHF6d29Gdk9FMDVhd2pZM1pxZk1lajBEVUF0TFBRRDFodlVpa1ZOdGltcmVlNlAiLCJtYWMiOiJlMjJjYjk2YTU4ODNmOTU1Y2YzZTYyNGE4ZWEyNDI2NGNmYzc4MmQ3ZWRhM2NhNjA0Nzc1MTViYzExNDIwNThkIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:14 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6ImljQVgyNDRhdmVzaGlKbDZWVGtFSUE9PSIsInZhbHVlIjoiNDFHRU5LV01wY2VTdWtFZTYxcWY5TkltVnZUbkRWaTVvMnQzWWZ0VVRxenhkbnpOQ3lBNUczYVF3Wi9yb2VtWHRaamZidHFUazNjOWU2ZVU5TExzZU5vd0hkZU03ZjJzYjBCc2xGWUgyc2ZNN2dSRzRTaC93MDlSdVFtWG5ELzUiLCJtYWMiOiJhOTkzOTExZjg0YjA1OWU0NGViODMxYjI1M2IzNmViMDQ3ZDFhZTBjNzhkNjA1OTBmMTYwMjZiNDliNGQyNTJlIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:14 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'verify-email/{id}/{hash}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mark the authenticated user's email address as verified."
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the verify email.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      hash:
+        name: hash
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+      hash: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjVqZHZNcFJBb3Aya25NTVpxQ3A1RVE9PSIsInZhbHVlIjoiZUJlNU5hWjhXYUU4cmNvUEJDc05ackxZYmgwZkxLcUxJNFFmMmZBbHdhb1JsQjg4dVV3MldwQmZ0cmFCNU9GUTkwWjJpUlpXSlUrUStXM2ZjTWZ2Yi9DSkNicTh2VmdWM1czMHQzdm5WcmIxVVJwUDI0YUUxeDg4Y3JvUTJEd0IiLCJtYWMiOiJiMTE0ZjBmYjdmN2Q5MWY2MWVhYWZjZmQ3MDFjM2VmMDBkMzFhMDZiMmU3YmI0MmM5YWU2Y2FmNWMzNzg3ODZmIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:14 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6InhlYzdFbkxXdWQwbFNLcVM4djJZa3c9PSIsInZhbHVlIjoiWkFGazBtdzlFZXgyaFBDTzhEcmk4YzFqb2h3WENlUHlwUnlsNk5LcVlacXJkUFBnRzZOc2x3SDZFTThNN0FtUFB5WFlZc2N4di92bEV6QjB0dUN1N0owUE53MERKNVpEeGZMZjVRME1nNkNwK0lYQUxxWHR6VmI0MUIvUzJrMzEiLCJtYWMiOiI0ZTU2MjlkYzE2MWIzM2VmMTYzYWZlMDU5YzdlMWE0NmI4YzJjYjZmNDA4NTcxODUzYzliMzMyODllOTcyNGVjIiwidGFnIjoiIn0%3D; expires=Wed, 17 Sep 2025 03:11:14 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: email/verification-notification
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Send a new email verification notification.'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'storage/{path}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Enter your bearer token'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      path:
+        name: path
+        description: ''
+        required: true
+        example: 2UZ5i
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      path: 2UZ5i
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 403
+        content: |-
+          {
+              "message": ""
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {TOKEN}'
+    controller: null
+    method: null
+    route: null
+    custom: []
