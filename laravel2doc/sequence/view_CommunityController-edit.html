@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommunityController::edit - Sequence Diagram</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header>
+  [object Object], [object Object], [object Object]
+    <h1>CommunityController::edit</h1>
+    <h2>laravel/laravel (Laravel v11.46.0)</h2>
+  </header>
+  
+  <nav>
+    <div class="controls">
+      <button class="btn btn-primary" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Back to Index
+      </button>
+    </div>
+    <div class="controls">
+      <select id="diagram-theme" class="select-box">
+        <option value="default">Theme: Default</option>
+        <option value="forest">Theme: Forest</option>
+        <option value="dark">Theme: Dark</option>
+        <option value="neutral">Theme: Neutral</option>
+      </select>
+      <button class="btn btn-blue theme-toggle" id="theme-toggle">🌙</button>
+    </div>
+  </nav>
+  
+  <main>
+    <div class="diagram-details" style="background-color: var(--light-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>CommunityController::edit</h3>
+        <span class="diagram-badge badge-update">UPDATE</span>
+      </div>
+      
+      <p><strong>Description:</strong> Updates an existing resource in CommunityController</p>
+      
+      <div style="margin-top: 1rem;">
+        <p><strong>Controller:</strong> Community</p>
+        <p><strong>Method:</strong> edit</p>
+        <p><strong>Models:</strong> 
+          None specified
+        </p>
+      </div>
+    </div>
+    
+    <div class="diagram-actions" style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+      <button class="btn btn-primary" id="print-btn">
+        <i class="fas fa-print"></i> Print
+      </button>
+      <button class="btn btn-info" id="export-btn" data-diagram="CommunityController-edit">
+        <i class="fas fa-download"></i> Export as PNG
+      </button>
+      <button class="btn btn-secondary" id="copy-text">
+        <i class="fas fa-copy"></i> Copy as Text
+      </button>
+      <button class="btn btn-blue" id="toggle-notes">
+        <i class="fas fa-sticky-note"></i> Hide Notes
+      </button>
+      <button class="btn btn-blue" id="toggle-animation">
+        <i class="fas fa-film"></i> Enable Animation
+      </button>
+    </div>
+    
+    <div class="diagram-zoom" style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+      <button class="btn btn-blue" id="zoom-in">
+        <i class="fas fa-search-plus"></i> Zoom In
+      </button>
+      <button class="btn btn-blue" id="zoom-out">
+        <i class="fas fa-search-minus"></i> Zoom Out
+      </button>
+      <button class="btn btn-blue" id="zoom-reset">
+        <i class="fas fa-sync"></i> Reset Zoom
+      </button>
+    </div>
+    
+    <div class="diagram-view" style="overflow: auto;">
+      <div class="mermaid" style="transform-origin: top left; transition: transform 0.3s;">
+  sequenceDiagram
+    autonumber
+    participant C as Client
+    participant R as Route
+    participant CommunityController as CommunityController
+    participant V as Validator
+    participant Model as Model
+    participant DB as Database
+    
+    C->>R: PUT /resource/{id}
+    R->>+CommunityController: edit(request, id)
+    CommunityController->>+V: validate(request)
+    V-->>-CommunityController: validated data
+    CommunityController->>+Model: find(id)
+    Model->>+DB: SELECT * FROM table WHERE id = ?
+    DB-->>-Model: Return record
+    Model-->>-CommunityController: Model instance
+    CommunityController->>+Model: update(data)
+    Model->>+DB: UPDATE table SET ... WHERE id = ?
+    DB-->>-Model: Success
+    Model-->>-CommunityController: Updated model
+    CommunityController-->>-R: Return JSON response
+    R-->>C: 200 OK with data
+    
+    Note over CommunityController,Model: This sequence updates an existing resource
+  
+      </div>
+    </div>
+    
+    <div style="margin-top: 2rem; background-color: var(--light-color); padding: 1.5rem; border-radius: 8px;">
+      <h3>Diagram Source Code</h3>
+      <pre id="diagram-source-code" style="background-color: rgba(0,0,0,0.05); padding: 1rem; border-radius: 4px; overflow: auto; max-height: 300px;">
+      sequenceDiagram
+    autonumber
+    participant C as Client
+    participant R as Route
+    participant CommunityController as CommunityController
+    participant V as Validator
+    participant Model as Model
+    participant DB as Database
+    
+    C-&gt;&gt;R: PUT /resource/{id}
+    R-&gt;&gt;+CommunityController: edit(request, id)
+    CommunityController-&gt;&gt;+V: validate(request)
+    V--&gt;&gt;-CommunityController: validated data
+    CommunityController-&gt;&gt;+Model: find(id)
+    Model-&gt;&gt;+DB: SELECT * FROM table WHERE id = ?
+    DB--&gt;&gt;-Model: Return record
+    Model--&gt;&gt;-CommunityController: Model instance
+    CommunityController-&gt;&gt;+Model: update(data)
+    Model-&gt;&gt;+DB: UPDATE table SET ... WHERE id = ?
+    DB--&gt;&gt;-Model: Success
+    Model--&gt;&gt;-CommunityController: Updated model
+    CommunityController--&gt;&gt;-R: Return JSON response
+    R--&gt;&gt;C: 200 OK with data
+    
+    Note over CommunityController,Model: This sequence updates an existing resource
+  </pre>
+    </div>
+  </main>
+  
+  <footer>
+    <p>Generated on 16/09/2025 at 23:48:07</p>
+    <p>Sequence Diagram Generator for Laravel</p>
+  </footer>
+  
+  <script src="assets/script.js"></script>
+</body>
+</html>
+  

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entity Relationship Diagram - laravel/laravel</title>
+ <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      border-bottom: 2px solid #3498db;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    
+    h2 {
+      color: #3498db;
+      font-weight: normal;
+    }
+    
+    .diagram-container {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    }
+    
+    .legend {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px 25px;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .legend h3 {
+      color: #2c3e50;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .legend ul {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .legend li {
+      margin-right: 30px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      padding: 5px 15px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #1abc9c;
+}
+
+.github-link {
+  background-color: #b43355;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.github-link:hover {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+    
+    .legend strong {
+      color: #3498db;
+    }
+    
+    .mermaid {
+      font-size: 16px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<!-- Add Font Awesome CDN if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="navbar">
+  <div class="navbar-title">
+    <i class="fas fa-code-branch"></i> Laravel2Doc
+  </div>
+  <div class="navbar-links">
+    <a href="https://laravel2doc.netlify.app/"><i class="fas fa-house"></i> Home</a>
+    <a href="../erd/"><i class="fas fa-project-diagram"></i> ERD</a>
+    <a href="../uml/"><i class="fas fa-sitemap"></i> UML</a>
+    <a href="../sequence/"><i class="fas fa-stream"></i> Sequence</a>
+    <a href="../api/"><i class="fas fa-plug"></i> API</a>
+    <a href="https://github.com/Priom7/laravel2doc" target="_blank" class="github-link">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+</div>
+
+  <header>
+    <h1>Entity Relationship Diagram</h1>
+    <h2>laravel/laravel (Laravel v11.46.0)</h2>
+  </header>
+  
+  <main>
+    <div class="diagram-container">
+      <div class="mermaid">
+erDiagram
+  post {
+    int id PK "Primary key"
+    int user_id FK "References user"
+    string content
+    string category
+    datetime created_at
+    datetime updated_at
+  }
+  user {
+    int id PK "Primary key"
+    string name
+    string email
+    string password
+    string menstruation_day
+    string profile_photo_path
+    datetime created_at
+    datetime updated_at
+  }
+  post }|--|| user : "user"
+
+      </div>
+    </div>
+    
+    <div class="legend">
+      <h3>Relationship Legend</h3>
+      <ul>
+        <li><strong>||--o|</strong>: One-to-One</li>
+        <li><strong>||--|{</strong>: One-to-Many</li>
+        <li><strong>}|--||</strong>: Belongs-To</li>
+        <li><strong>}|--|{</strong>: Many-to-Many</li>
+        <li><strong>||--o{</strong>: Polymorphic</li>
+        <li><strong>||..o{</strong>: Has-Many-Through</li>
+      </ul>
+      <h3>Key Legend</h3>
+      <ul>
+        <li><strong>PK</strong>: Primary Key</li>
+        <li><strong>FK</strong>: Foreign Key</li>
+      </ul>
+    </div>
+  </main>
+  
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose',
+      er: {
+        diagramPadding: 20,
+        layoutDirection: 'TB',
+        minEntityWidth: 100,
+        minEntityHeight: 75,
+        entityPadding: 15
+      }
+    });
+  </script>
+</body>
+</html>

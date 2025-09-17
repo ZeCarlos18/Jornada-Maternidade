@@ -1,0 +1,2356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequence Diagrams - laravel/laravel</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<!-- Add Font Awesome CDN if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="navbar">
+  <div class="navbar-title">
+    <i class="fas fa-code-branch"></i> Laravel2Doc
+  </div>
+  <div class="navbar-links">
+    <a href="https://laravel2doc.netlify.app/"><i class="fas fa-house"></i> Home</a>
+    <a href="../erd/"><i class="fas fa-project-diagram"></i> ERD</a>
+    <a href="../uml/"><i class="fas fa-sitemap"></i> UML</a>
+    <a href="../sequence/"><i class="fas fa-stream"></i> Sequence</a>
+    <a href="../api/"><i class="fas fa-plug"></i> API</a>
+    <a href="https://github.com/Priom7/laravel2doc" target="_blank" class="github-link">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+</div>
+
+  <header>
+    <h1>Sequence Diagrams</h1>
+    <h2>laravel/laravel (Laravel v11.46.0)</h2>
+  </header>
+  
+  <nav>
+    <div class="controls">
+      <input type="text" id="search-diagrams" class="search-box" placeholder="Search diagrams...">
+      <select id="filter-type" class="select-box">
+        <option value="all">All Types</option>
+        <option value="list">List</option>
+        <option value="show">Show</option>
+        <option value="create">Create</option>
+        <option value="update">Update</option>
+        <option value="delete">Delete</option>
+        <option value="generic">Generic</option>
+      </select>
+      <select id="filter-controller" class="select-box">
+        <option value="all">All Controllers</option>
+        <option value="AuthenticatedSession">AuthenticatedSession</option>
+        <option value="ConfirmablePassword">ConfirmablePassword</option>
+        <option value="EmailVerificationNotification">EmailVerificationNotification</option>
+        <option value="EmailVerificationPrompt">EmailVerificationPrompt</option>
+        <option value="NewPassword">NewPassword</option>
+        <option value="Password">Password</option>
+        <option value="PasswordResetLink">PasswordResetLink</option>
+        <option value="RegisteredUser">RegisteredUser</option>
+        <option value="SocialAuth">SocialAuth</option>
+        <option value="VerifyEmail">VerifyEmail</option>
+        <option value="Community">Community</option>
+        <option value=""></option>
+        <option value="Dashboard">Dashboard</option>
+        <option value="Diary">Diary</option>
+        <option value="Post">Post</option>
+        <option value="Profile">Profile</option>
+      </select>
+    </div>
+    <div class="controls">
+      <select id="diagram-theme" class="select-box">
+        <option value="default">Theme: Default</option>
+        <option value="forest">Theme: Forest</option>
+        <option value="dark">Theme: Dark</option>
+        <option value="neutral">Theme: Neutral</option>
+      </select>
+      <button class="btn btn-blue theme-toggle" id="theme-toggle">🌙</button>
+    </div>
+  </nav>
+  
+  <main>
+    <div class="dashboard">
+      <div class="stat-card">
+        <div class="stat-number">30</div>
+        <div class="stat-label">Total Diagrams</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Controllers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12</div>
+        <div class="stat-label">Create Operations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">List Operations</div>
+      </div>
+    </div>
+    
+    <div class="chart-container" style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+      <div style="flex: 1; background-color: var(--light-color); padding: 1rem; border-radius: 8px;">
+        <h3>Diagram Types Distribution</h3>
+        <canvas id="stats-chart" data-stats='{"totalDiagrams":30,"byType":{"create":12,"delete":4,"show":1,"generic":5,"update":5,"list":3},"byController":{"AuthenticatedSession":3,"ConfirmablePassword":2,"EmailVerificationNotification":1,"EmailVerificationPrompt":1,"NewPassword":2,"Password":1,"PasswordResetLink":2,"RegisteredUser":2,"SocialAuth":2,"VerifyEmail":1,"Community":4,"":0,"Dashboard":1,"Diary":1,"Post":3,"Profile":4}}'></canvas>
+      </div>
+      <div style="flex: 1; background-color: var(--light-color); padding: 1rem; border-radius: 8px;">
+        <h3>Controller Distribution</h3>
+        <canvas id="controller-chart" data-stats='{"totalDiagrams":30,"byType":{"create":12,"delete":4,"show":1,"generic":5,"update":5,"list":3},"byController":{"AuthenticatedSession":3,"ConfirmablePassword":2,"EmailVerificationNotification":1,"EmailVerificationPrompt":1,"NewPassword":2,"Password":1,"PasswordResetLink":2,"RegisteredUser":2,"SocialAuth":2,"VerifyEmail":1,"Community":4,"":0,"Dashboard":1,"Diary":1,"Post":3,"Profile":4}}'></canvas>
+      </div>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="all-diagrams">All Diagrams</div>
+      <div class="tab" data-tab="by-type">By Type</div>
+      <div class="tab" data-tab="by-controller">By Controller</div>
+    </div>
+    
+    <div id="all-diagrams" class="tab-content active">
+      <div class="diagram-grid">
+        
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="show" data-type="show">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-show">SHOW</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">show</div>
+          <div class="diagram-description">Retrieves a specific resource from ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-show.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="EmailVerificationNotification" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>EmailVerificationNotification</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in EmailVerificationNotificationController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationNotificationController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="EmailVerificationPrompt" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>EmailVerificationPrompt</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in EmailVerificationPromptController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationPromptController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="NewPassword" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="NewPassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Password" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Password</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in PasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="SocialAuth" data-method="redirectToFacebook" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">redirectToFacebook</div>
+          <div class="diagram-description">Handles redirectToFacebook operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-redirectToFacebook.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="SocialAuth" data-method="handleFacebookCallback" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">handleFacebookCallback</div>
+          <div class="diagram-description">Handles handleFacebookCallback operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">User</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-handleFacebookCallback.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="VerifyEmail" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>VerifyEmail</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in VerifyEmailController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_VerifyEmailController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Community" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Community" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Community" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Community" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Dashboard" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Dashboard</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DashboardController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DashboardController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Diary" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Diary</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DiaryController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DiaryController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Post" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Post" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Post" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Profile" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Profile" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Profile" data-method="updatePhoto" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">updatePhoto</div>
+          <div class="diagram-description">Handles updatePhoto operation in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-updatePhoto.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="diagram-card" data-controller="Profile" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      </div>
+    </div>
+    
+    <div id="by-type" class="tab-content">
+      
+      <div class="type-section">
+        <h3>List Operations (3)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Community" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Dashboard" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Dashboard</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DashboardController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DashboardController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Diary" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Diary</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DiaryController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DiaryController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="type-section">
+        <h3>Show Operations (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="show" data-type="show">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-show">SHOW</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">show</div>
+          <div class="diagram-description">Retrieves a specific resource from ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-show.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="type-section">
+        <h3>Create Operations (12)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="EmailVerificationNotification" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>EmailVerificationNotification</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in EmailVerificationNotificationController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationNotificationController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="NewPassword" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="NewPassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Post" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Post" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="type-section">
+        <h3>Update Operations (5)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Password" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Password</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in PasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="type-section">
+        <h3>Delete Operations (4)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Post" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="type-section">
+        <h3>Generic Operations (5)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="EmailVerificationPrompt" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>EmailVerificationPrompt</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in EmailVerificationPromptController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationPromptController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="SocialAuth" data-method="redirectToFacebook" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">redirectToFacebook</div>
+          <div class="diagram-description">Handles redirectToFacebook operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-redirectToFacebook.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="SocialAuth" data-method="handleFacebookCallback" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">handleFacebookCallback</div>
+          <div class="diagram-description">Handles handleFacebookCallback operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">User</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-handleFacebookCallback.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="VerifyEmail" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>VerifyEmail</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in VerifyEmailController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_VerifyEmailController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="updatePhoto" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">updatePhoto</div>
+          <div class="diagram-description">Handles updatePhoto operation in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-updatePhoto.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+    </div>
+    
+    <div id="by-controller" class="tab-content">
+      
+      <div class="controller-section">
+        <h3>AuthenticatedSession Controller (3)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="AuthenticatedSession" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>AuthenticatedSession</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from AuthenticatedSessionController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_AuthenticatedSessionController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>ConfirmablePassword Controller (2)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="show" data-type="show">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-show">SHOW</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">show</div>
+          <div class="diagram-description">Retrieves a specific resource from ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-show.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="ConfirmablePassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>ConfirmablePassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in ConfirmablePasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ConfirmablePasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>EmailVerificationNotification Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="EmailVerificationNotification" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>EmailVerificationNotification</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in EmailVerificationNotificationController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationNotificationController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>EmailVerificationPrompt Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="EmailVerificationPrompt" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>EmailVerificationPrompt</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in EmailVerificationPromptController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_EmailVerificationPromptController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>NewPassword Controller (2)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="NewPassword" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="NewPassword" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>NewPassword</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in NewPasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_NewPasswordController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Password Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Password" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Password</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in PasswordController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>PasswordResetLink Controller (2)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="PasswordResetLink" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>PasswordResetLink</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PasswordResetLinkController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PasswordResetLinkController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>RegisteredUser Controller (2)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="RegisteredUser" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>RegisteredUser</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in RegisteredUserController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_RegisteredUserController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>SocialAuth Controller (2)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="SocialAuth" data-method="redirectToFacebook" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">redirectToFacebook</div>
+          <div class="diagram-description">Handles redirectToFacebook operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-redirectToFacebook.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="SocialAuth" data-method="handleFacebookCallback" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>SocialAuth</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">handleFacebookCallback</div>
+          <div class="diagram-description">Handles handleFacebookCallback operation in SocialAuthController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">User</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_SocialAuthController-handleFacebookCallback.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>VerifyEmail Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="VerifyEmail" data-method="__invoke" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>VerifyEmail</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">__invoke</div>
+          <div class="diagram-description">Handles __invoke operation in VerifyEmailController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_VerifyEmailController-__invoke.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Community Controller (4)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Community" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Community" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Community</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from CommunityController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_CommunityController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      
+      <div class="controller-section">
+        <h3>Dashboard Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Dashboard" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Dashboard</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DashboardController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DashboardController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Diary Controller (1)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Diary" data-method="index" data-type="list">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-list">LIST</div>
+          <h4>Diary</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">index</div>
+          <div class="diagram-description">Retrieves a collection of resources from DiaryController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_DiaryController-index.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Post Controller (3)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Post" data-method="create" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">create</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-create.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Post" data-method="store" data-type="create">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-create">CREATE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">store</div>
+          <div class="diagram-description">Creates a new resource in PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-store.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Post" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Post</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from PostController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            <span class="model-tag">Post</span>
+            
+          </div>
+          <div class="diagram-actions">
+            <a href="view_PostController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+      
+      <div class="controller-section">
+        <h3>Profile Controller (4)</h3>
+        <div class="diagram-grid">
+          
+      <div class="diagram-card" data-controller="Profile" data-method="edit" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">edit</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-edit.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="update" data-type="update">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-update">UPDATE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">update</div>
+          <div class="diagram-description">Updates an existing resource in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-update.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="updatePhoto" data-type="generic">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-generic">GENERIC</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">updatePhoto</div>
+          <div class="diagram-description">Handles updatePhoto operation in ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-updatePhoto.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+          
+      <div class="diagram-card" data-controller="Profile" data-method="destroy" data-type="delete">
+        <div class="diagram-header">
+          <div class="diagram-badge badge-delete">DELETE</div>
+          <h4>Profile</h4>
+        </div>
+        <div class="diagram-body">
+          <div class="diagram-title">destroy</div>
+          <div class="diagram-description">Removes a resource from ProfileController</div>
+        </div>
+        <div class="diagram-footer">
+          <div class="diagram-models">
+            
+            <span style="font-style: italic; opacity: 0.7;">No models</span>
+          </div>
+          <div class="diagram-actions">
+            <a href="view_ProfileController-destroy.html" class="action-btn view-btn" title="View Diagram">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <footer>
+    <p>Generated on 16/09/2025 at 23:48:07</p>
+    <p>Sequence Diagram Generator for Laravel</p>
+  </footer>
+  
+  <script src="assets/script.js"></script>
+</body>
+</html>
+  

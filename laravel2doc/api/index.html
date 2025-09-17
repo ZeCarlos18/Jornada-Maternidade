@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - laravel/laravel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #3490dc;
+      --secondary-color: #38c172;
+      --dark-color: #2d3748;
+      --light-color: #f8fafc;
+      --get-color: #3490dc;
+      --post-color: #38c172;
+      --put-color: #f6993f;
+      --patch-color: #f6993f;
+      --delete-color: #e3342f;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    h1, h2, h3 {
+      color: var(--dark-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: var(--light-color);
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #1abc9c;
+}
+
+.github-link {
+  background-color: #b43355;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.github-link:hover {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+    code {
+      background: #f4f4f4;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ddd;
+      margin: 2rem 0;
+    }
+    .method {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 70px;
+      text-align: center;
+    }
+    .method-get { background-color: var(--get-color); }
+    .method-post { background-color: var(--post-color); }
+    .method-put, .method-patch { background-color: var(--put-color); }
+    .method-delete { background-color: var(--delete-color); }
+    
+    #api-content ul {
+      padding-left: 20px;
+    }
+    #api-content li {
+      margin-bottom: 5px;
+    }
+    
+    /* Interactive elements */
+    .search-container {
+      margin-bottom: 1.5rem;
+      position: sticky;
+      top: 80px;
+      z-index: 99;
+      background: white;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    #search {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .endpoint-container {
+      margin-bottom: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .endpoint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background-color: var(--light-color);
+      cursor: pointer;
+    }
+    .endpoint-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    .endpoint-content {
+      padding: 0.75rem;
+      display: none;
+    }
+    .endpoint-content.active {
+      display: block;
+    }
+    .try-it {
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .try-it:hover {
+      opacity: 0.9;
+    }
+    .try-it-form {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .form-group textarea {
+      height: 100px;
+    }
+    .response-container {
+      margin-top: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+    }
+    .response-header {
+      padding: 0.5rem;
+      background-color: var(--light-color);
+      display: flex;
+      justify-content: space-between;
+    }
+    .response-body {
+      padding: 0.5rem;
+      overflow-x: auto;
+    }
+    .collapse-icon {
+      margin-right: 8px;
+      transition: transform 0.3s;
+    }
+    .endpoint-header.active .collapse-icon {
+      transform: rotate(90deg);
+    }
+    #dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--dark-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: #f7fafc;
+    }
+    .dark-mode header {
+      background-color: #2d3748;
+    }
+    .dark-mode table, .dark-mode th, .dark-mode td {
+      border-color: #4a5568;
+    }
+    .dark-mode th, .dark-mode .endpoint-header {
+      background-color: #2d3748;
+      color: #f7fafc;
+    }
+    .dark-mode tr:nth-child(even) {
+      background-color: #2d3748;
+    }
+    .dark-mode code, .dark-mode pre {
+      background-color: #2d3748;
+      color: #f7fafc;
+    }
+    
+    @media (max-width: 768px) {
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<!-- Add Font Awesome CDN if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="navbar">
+  <div class="navbar-title">
+    <i class="fas fa-code-branch"></i> Laravel2Doc
+  </div>
+  <div class="navbar-links">
+    <a href="https://laravel2doc.netlify.app/"><i class="fas fa-house"></i> Home</a>
+    <a href="../erd/"><i class="fas fa-project-diagram"></i> ERD</a>
+    <a href="../uml/"><i class="fas fa-sitemap"></i> UML</a>
+    <a href="../sequence/"><i class="fas fa-stream"></i> Sequence</a>
+    <a href="../api/"><i class="fas fa-plug"></i> API</a>
+    <a href="https://github.com/Priom7/laravel2doc" target="_blank" class="github-link">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+</div>
+
+  <header>
+    <h1>API Documentation</h1>
+    <h2>laravel/laravel (Laravel v11.46.0)</h2>
+  </header>
+  
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search endpoints, methods, or descriptions...">
+  </div>
+  
+  <main class="markdown-body">
+    <div id="api-content">
+      <h1 id="API Documentation">API Documentation</h1>
+
+<h2 id="Project: laravel/laravel">Project: laravel/laravel</h2>
+
+<p>Laravel Version: v11.46.0</p>
+
+<p>Generated: 16/09/2025, 23:48:07</p>
+
+<h2 id="Table of Contents">Table of Contents</h2>
+
+<ul><li>[auth](#auth)</li>
+<p><li>[web](#web)</li></p>
+<p></ul></p>
+<h2 id="auth">auth</h2>
+
+<table>
+<p>      <thead></p>
+<p>        <tr><th>Method</th><th>Endpoint</th><th>Handler</th><th>Description</th></tr></p>
+<p>      </thead></p>
+<p>      <tbody></p>
+<p>        <tr><td>GET</td><td>register</td><td>RegisteredUserController::class, 'create'</td><td>List register</td></tr><tr><td>POST</td><td>register</td><td>RegisteredUserController::class, 'store'</td><td>Create a new register</td></tr><tr><td>GET</td><td>login</td><td>AuthenticatedSessionController::class, 'create'</td><td>List login</td></tr><tr><td>POST</td><td>login</td><td>AuthenticatedSessionController::class, 'store'</td><td>Create a new login</td></tr><tr><td>GET</td><td>forgot-password</td><td>PasswordResetLinkController::class, 'create'</td><td>List forgot-password</td></tr><tr><td>POST</td><td>forgot-password</td><td>PasswordResetLinkController::class, 'store'</td><td>Create a new forgot-password</td></tr><tr><td>GET</td><td>reset-password/{token}</td><td>NewPasswordController::class, 'create'</td><td>Retrieve a specific {token}</td></tr><tr><td>POST</td><td>reset-password</td><td>NewPasswordController::class, 'store'</td><td>Create a new reset-password</td></tr></p>
+<p>      </tbody></p>
+<p>    </table>| GET | verify-email | EmailVerificationPromptController::class)</p>
+<p>        ->name('verification.notice');</p>
+
+<p>    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)</p>
+<p>        ->middleware(['signed', 'throttle:6,1' | List verify-email |</p>
+<p>| POST | email/verification-notification | EmailVerificationNotificationController::class, 'store' | Create a new verification-notification |</p>
+<p>| GET | confirm-password | ConfirmablePasswordController::class, 'show' | List confirm-password |</p>
+<p>| POST | confirm-password | ConfirmablePasswordController::class, 'store' | Create a new confirm-password |</p>
+<p>| PUT | password | PasswordController::class, 'update' | Update a specific password |</p>
+<p>| POST | logout | AuthenticatedSessionController::class, 'destroy' | Create a new logout |</p>
+
+<p>### GET register</p>
+
+<p><strong>Handler:</strong> RegisteredUserController::class, 'create'</p>
+
+<p><strong>Description:</strong> List register</p>
+
+<hr>
+
+<p>### POST register</p>
+
+<p><strong>Handler:</strong> RegisteredUserController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new register</p>
+
+<hr>
+
+<p>### GET login</p>
+
+<p><strong>Handler:</strong> AuthenticatedSessionController::class, 'create'</p>
+
+<p><strong>Description:</strong> List login</p>
+
+<hr>
+
+<p>### POST login</p>
+
+<p><strong>Handler:</strong> AuthenticatedSessionController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new login</p>
+
+<hr>
+
+<p>### GET forgot-password</p>
+
+<p><strong>Handler:</strong> PasswordResetLinkController::class, 'create'</p>
+
+<p><strong>Description:</strong> List forgot-password</p>
+
+<hr>
+
+<p>### POST forgot-password</p>
+
+<p><strong>Handler:</strong> PasswordResetLinkController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new forgot-password</p>
+
+<hr>
+
+<p>### GET reset-password/{token}</p>
+
+<p><strong>Handler:</strong> NewPasswordController::class, 'create'</p>
+
+<p><strong>Description:</strong> Retrieve a specific {token}</p>
+
+<hr>
+
+<p>### POST reset-password</p>
+
+<p><strong>Handler:</strong> NewPasswordController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new reset-password</p>
+
+<hr>
+
+<p>### GET verify-email</p>
+
+<p><strong>Handler:</strong> EmailVerificationPromptController::class)</p>
+<p>        ->name('verification.notice');</p>
+
+<p>    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)</p>
+<p>        ->middleware(['signed', 'throttle:6,1'</p>
+
+<p><strong>Description:</strong> List verify-email</p>
+
+<hr>
+
+<p>### POST email/verification-notification</p>
+
+<p><strong>Handler:</strong> EmailVerificationNotificationController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new verification-notification</p>
+
+<hr>
+
+<p>### GET confirm-password</p>
+
+<p><strong>Handler:</strong> ConfirmablePasswordController::class, 'show'</p>
+
+<p><strong>Description:</strong> List confirm-password</p>
+
+<hr>
+
+<p>### POST confirm-password</p>
+
+<p><strong>Handler:</strong> ConfirmablePasswordController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new confirm-password</p>
+
+<hr>
+
+<p>### PUT password</p>
+
+<p><strong>Handler:</strong> PasswordController::class, 'update'</p>
+
+<p><strong>Description:</strong> Update a specific password</p>
+
+<hr>
+
+<p>### POST logout</p>
+
+<p><strong>Handler:</strong> AuthenticatedSessionController::class, 'destroy'</p>
+
+<p><strong>Description:</strong> Create a new logout</p>
+
+<hr>
+
+<h2 id="web">web</h2>
+
+<table>
+<p>      <thead></p>
+<p>        <tr><th>Method</th><th>Endpoint</th><th>Handler</th><th>Description</th></tr></p>
+<p>      </thead></p>
+<p>      <tbody></p>
+<p>        <tr><td>GET</td><td>/auth/facebook</td><td>SocialAuthController::class, 'redirectToFacebook'</td><td>List facebook</td></tr><tr><td>GET</td><td>/auth/facebook/callback</td><td>SocialAuthController::class, 'handleFacebookCallback'</td><td>List callback</td></tr></p>
+<p>      </tbody></p>
+<p>    </table>| GET | /auth/google | function () {</p>
+<p>    return Socialite::driver('google')->redirect();</p>
+<p>});</p>
+
+<p>Route::get('/auth/google/callback', function () {</p>
+<p>    $googleUser = Socialite::driver('google')->user();</p>
+<p>    $user = User::firstOrCreate(</p>
+<p>        ['email' => $googleUser->getEmail() | List google |</p>
+<p>| GET | / | function () {</p>
+<p>    return view('auth.login');</p>
+<p>});</p>
+
+<p>Route::get('/login', function () {</p>
+<p>    return view('auth.login');</p>
+<p>});</p>
+
+<p>Route::get('/register', function () {</p>
+<p>    return view('auth.register');</p>
+<p>});</p>
+
+<p>Route::get('/dashboard', [DashboardController::class, 'index' | List resource |</p>
+<p>| GET | /diary | DiaryController::class, 'index' | List diary |</p>
+<p>| GET | /posts/create/{category?} | PostController::class, 'create' | Retrieve a specific {category?} |</p>
+<p>| POST | /posts | PostController::class, 'store' | Create a new posts |</p>
+<p>| GET | /community/{category?} | CommunityController::class, 'index' | Retrieve a specific {category?} |</p>
+<p>| GET | /profile | ProfileController::class, 'edit' | List profile |</p>
+<p>| PATCH | /profile | ProfileController::class, 'update' | Update a specific profile |</p>
+<p>| DELETE | /profile | ProfileController::class, 'destroy' | Delete a specific profile |</p>
+<p>| POST | /profile/photo | ProfileController::class, 'updatePhoto' | Create a new photo |</p>
+<p>| DELETE | /posts/{post} | PostController::class, 'destroy' | Delete a specific {post} |</p>
+
+<p>### GET /auth/facebook</p>
+
+<p><strong>Handler:</strong> SocialAuthController::class, 'redirectToFacebook'</p>
+
+<p><strong>Description:</strong> List facebook</p>
+
+<hr>
+
+<p>### GET /auth/facebook/callback</p>
+
+<p><strong>Handler:</strong> SocialAuthController::class, 'handleFacebookCallback'</p>
+
+<p><strong>Description:</strong> List callback</p>
+
+<hr>
+
+<p>### GET /auth/google</p>
+
+<p><strong>Handler:</strong> function () {</p>
+<p>    return Socialite::driver('google')->redirect();</p>
+<p>});</p>
+
+<p>Route::get('/auth/google/callback', function () {</p>
+<p>    $googleUser = Socialite::driver('google')->user();</p>
+<p>    $user = User::firstOrCreate(</p>
+<p>        ['email' => $googleUser->getEmail()</p>
+
+<p><strong>Description:</strong> List google</p>
+
+<hr>
+
+<p>### GET /</p>
+
+<p><strong>Handler:</strong> function () {</p>
+<p>    return view('auth.login');</p>
+<p>});</p>
+
+<p>Route::get('/login', function () {</p>
+<p>    return view('auth.login');</p>
+<p>});</p>
+
+<p>Route::get('/register', function () {</p>
+<p>    return view('auth.register');</p>
+<p>});</p>
+
+<p>Route::get('/dashboard', [DashboardController::class, 'index'</p>
+
+<p><strong>Description:</strong> List resource</p>
+
+<hr>
+
+<p>### GET /diary</p>
+
+<p><strong>Handler:</strong> DiaryController::class, 'index'</p>
+
+<p><strong>Description:</strong> List diary</p>
+
+<hr>
+
+<p>### GET /posts/create/{category?}</p>
+
+<p><strong>Handler:</strong> PostController::class, 'create'</p>
+
+<p><strong>Description:</strong> Retrieve a specific {category?}</p>
+
+<hr>
+
+<p>### POST /posts</p>
+
+<p><strong>Handler:</strong> PostController::class, 'store'</p>
+
+<p><strong>Description:</strong> Create a new posts</p>
+
+<hr>
+
+<p>### GET /community/{category?}</p>
+
+<p><strong>Handler:</strong> CommunityController::class, 'index'</p>
+
+<p><strong>Description:</strong> Retrieve a specific {category?}</p>
+
+<hr>
+
+<p>### GET /profile</p>
+
+<p><strong>Handler:</strong> ProfileController::class, 'edit'</p>
+
+<p><strong>Description:</strong> List profile</p>
+
+<hr>
+
+<p>### PATCH /profile</p>
+
+<p><strong>Handler:</strong> ProfileController::class, 'update'</p>
+
+<p><strong>Description:</strong> Update a specific profile</p>
+
+<hr>
+
+<p>### DELETE /profile</p>
+
+<p><strong>Handler:</strong> ProfileController::class, 'destroy'</p>
+
+<p><strong>Description:</strong> Delete a specific profile</p>
+
+<hr>
+
+<p>### POST /profile/photo</p>
+
+<p><strong>Handler:</strong> ProfileController::class, 'updatePhoto'</p>
+
+<p><strong>Description:</strong> Create a new photo</p>
+
+<hr>
+
+<p>### DELETE /posts/{post}</p>
+
+<p><strong>Handler:</strong> PostController::class, 'destroy'</p>
+
+<p><strong>Description:</strong> Delete a specific {post}</p>
+
+<hr>
+
+
+    </div>
+  </main>
+  
+  <button id="dark-mode-toggle">🌓</button>
+
+  <script>
+    hljs.highlightAll();
+    
+    // Add method color classes
+    document.querySelectorAll('table td:first-child').forEach(cell => {
+      const method = cell.textContent.trim().toLowerCase();
+      const methods = method.split('/');
+      
+      if (methods.length) {
+        const mainMethod = methods[0].toLowerCase();
+        if (['get', 'post', 'put', 'patch', 'delete'].includes(mainMethod)) {
+          cell.innerHTML = `<span class="method method-${mainMethod}">${cell.textContent}</span>`;
+        }
+      }
+    });
+    
+    // Interactive search
+    const search = document.getElementById('search');
+    search.addEventListener('input', function() {
+      const value = this.value.toLowerCase();
+      const endpoints = document.querySelectorAll('.endpoint-container');
+      
+      endpoints.forEach(endpoint => {
+        const text = endpoint.textContent.toLowerCase();
+        const match = text.includes(value);
+        endpoint.style.display = match ? 'block' : 'none';
+      });
+    });
+    
+    // Toggle endpoint details
+    document.querySelectorAll('.endpoint-header').forEach(header => {
+      header.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        content.classList.toggle('active');
+      });
+    });
+    
+    // Try It functionality
+    document.querySelectorAll('.try-it').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const container = this.closest('.endpoint-container');
+        const content = container.querySelector('.endpoint-content');
+        
+        if (!content.classList.contains('active')) {
+          container.querySelector('.endpoint-header').click();
+        }
+        
+        // Create form if it doesn't exist
+        if (!container.querySelector('.try-it-form')) {
+          const method = container.getAttribute('data-method');
+          const endpoint = container.getAttribute('data-endpoint');
+          
+          const form = document.createElement('div');
+          form.className = 'try-it-form';
+          form.innerHTML = `
+            <h4>Test Request</h4>
+            <div class="form-group">
+              <label>URL</label>
+              <input type="text" class="url-input" value="${window.location.origin}${endpoint}" readonly>
+            </div>
+            ${method !== 'GET' ? `
+              <div class="form-group">
+                <label>Request Body (JSON)</label>
+                <textarea class="body-input">{}</textarea>
+              </div>
+            ` : ''}
+            <div class="form-group">
+              <button type="button" class="send-request">Send Request</button>
+            </div>
+            <div class="response-container">
+              <div class="response-header">
+                <span class="response-status"></span>
+                <span class="response-time"></span>
+              </div>
+              <div class="response-body">
+                <pre><code class="language-json response-code"></code></pre>
+              </div>
+            </div>
+          `;
+          
+          content.appendChild(form);
+          
+          // Add event listener to send button
+          form.querySelector('.send-request').addEventListener('click', async function() {
+            const urlInput = form.querySelector('.url-input');
+            const bodyInput = form.querySelector('.body-input');
+            const responseContainer = form.querySelector('.response-container');
+            const responseStatus = form.querySelector('.response-status');
+            const responseTime = form.querySelector('.response-time');
+            const responseCode = form.querySelector('.response-code');
+            
+            const url = urlInput.value;
+            const body = bodyInput ? bodyInput.value : null;
+            
+            const startTime = Date.now();
+            
+            try {
+              responseContainer.style.display = 'block';
+              responseStatus.textContent = 'Loading...';
+              responseTime.textContent = '';
+              responseCode.textContent = '';
+              
+              // Note: In a real implementation, you would make actual API calls
+              // For demo purposes, we're just simulating a response
+              const response = {
+                status: 200,
+                statusText: 'OK',
+                data: { 
+                  message: "This is a simulated response for demonstration.",
+                  method: method,
+                  url: url,
+                  receivedBody: body ? JSON.parse(body) : null
+                }
+              };
+              
+              const endTime = Date.now();
+              const time = endTime - startTime;
+              
+              setTimeout(() => {
+                responseStatus.textContent = `Status: ${response.status} ${response.statusText}`;
+                responseTime.textContent = `Time: ${time}ms`;
+                responseCode.textContent = JSON.stringify(response.data, null, 2);
+                hljs.highlightElement(responseCode);
+              }, 500); // Simulate network delay
+              
+            } catch (error) {
+              responseStatus.textContent = 'Error';
+              responseCode.textContent = error.toString();
+              hljs.highlightElement(responseCode);
+            }
+          });
+        }
+      });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>
+  

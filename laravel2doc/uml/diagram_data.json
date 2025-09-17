@@ -1,0 +1,310 @@
+{
+  "models": [
+    {
+      "name": "Post",
+      "properties": [
+        {
+          "name": "user_id",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "content",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "category",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models"
+    },
+    {
+      "name": "User",
+      "properties": [
+        {
+          "name": "name",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "email",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "password",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "menstruation_day",
+          "type": "fillable",
+          "dataType": ""
+        },
+        {
+          "name": "profile_photo_path",
+          "type": "fillable",
+          "dataType": ""
+        }
+      ],
+      "methods": [],
+      "namespace": "App\\Models"
+    }
+  ],
+  "controllers": [
+    {
+      "name": "AuthenticatedSessionController",
+      "methods": [
+        {
+          "name": "create",
+          "params": ""
+        },
+        {
+          "name": "store",
+          "params": "LoginRequest $request"
+        },
+        {
+          "name": "destroy",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "ConfirmablePasswordController",
+      "methods": [
+        {
+          "name": "show",
+          "params": ""
+        },
+        {
+          "name": "store",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "EmailVerificationNotificationController",
+      "methods": [
+        {
+          "name": "store",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "EmailVerificationPromptController",
+      "methods": [
+        {
+          "name": "__invoke",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "NewPasswordController",
+      "methods": [
+        {
+          "name": "create",
+          "params": "Request $request"
+        },
+        {
+          "name": "store",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "PasswordController",
+      "methods": [
+        {
+          "name": "update",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "PasswordResetLinkController",
+      "methods": [
+        {
+          "name": "create",
+          "params": ""
+        },
+        {
+          "name": "store",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "RegisteredUserController",
+      "methods": [
+        {
+          "name": "create",
+          "params": ""
+        },
+        {
+          "name": "store",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "SocialAuthController",
+      "methods": [
+        {
+          "name": "redirectToFacebook",
+          "params": ""
+        },
+        {
+          "name": "handleFacebookCallback",
+          "params": ""
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "VerifyEmailController",
+      "methods": [
+        {
+          "name": "__invoke",
+          "params": "EmailVerificationRequest $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers\\Auth"
+    },
+    {
+      "name": "CommunityController",
+      "methods": [
+        {
+          "name": "index",
+          "params": "$category = 'duvidas'"
+        },
+        {
+          "name": "edit",
+          "params": "Request $request"
+        },
+        {
+          "name": "update",
+          "params": "ProfileUpdateRequest $request"
+        },
+        {
+          "name": "destroy",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "Controller",
+      "methods": [],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "DashboardController",
+      "methods": [
+        {
+          "name": "index",
+          "params": ""
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "DiaryController",
+      "methods": [
+        {
+          "name": "index",
+          "params": ""
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "PostController",
+      "methods": [
+        {
+          "name": "create",
+          "params": "$category = null"
+        },
+        {
+          "name": "store",
+          "params": "Request $request"
+        },
+        {
+          "name": "destroy",
+          "params": "Post $post"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    },
+    {
+      "name": "ProfileController",
+      "methods": [
+        {
+          "name": "edit",
+          "params": "Request $request"
+        },
+        {
+          "name": "update",
+          "params": "ProfileUpdateRequest $request"
+        },
+        {
+          "name": "updatePhoto",
+          "params": "Request $request"
+        },
+        {
+          "name": "destroy",
+          "params": "Request $request"
+        }
+      ],
+      "namespace": "App\\Http\\Controllers"
+    }
+  ],
+  "services": [],
+  "relationships": [
+    {
+      "sourceModel": "Post",
+      "relationshipType": "belongsTo",
+      "relationshipName": "user",
+      "targetModel": "User::class"
+    }
+  ],
+  "directories": {
+    ".": {
+      "models": [
+        "Post",
+        "User"
+      ],
+      "controllers": [
+        "AuthenticatedSessionController",
+        "ConfirmablePasswordController",
+        "EmailVerificationNotificationController",
+        "EmailVerificationPromptController",
+        "NewPasswordController",
+        "PasswordController",
+        "PasswordResetLinkController",
+        "RegisteredUserController",
+        "SocialAuthController",
+        "VerifyEmailController",
+        "CommunityController",
+        "Controller",
+        "DashboardController",
+        "DiaryController",
+        "PostController",
+        "ProfileController"
+      ]
+    }
+  }
+}
