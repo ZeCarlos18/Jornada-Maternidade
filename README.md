@@ -1,9 +1,3 @@
-Com certeza! Com base no seu `README.md` atual e nas especificações do seu `composer.json`, criei uma versão muito mais estruturada, profissional e fácil de seguir para quem for instalar e contribuir com o projeto.
-
-Organizei as informações em seções claras, adicionei os pré-requisitos (baseados na versão do Laravel e PHP que você está usando) e juntei a parte do frontend (JavaScript/Vite) no fluxo principal de instalação para evitar que alguém esqueça de rodar.
-
-Aqui está uma sugestão de como o seu novo `README.md` pode ficar:
-
 ```markdown
 # Jornada Maternidade
 
